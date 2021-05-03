@@ -15,7 +15,7 @@ export default {
     ]
   },
   server: {
-    port: 5000, // default: 3000
+    port: 3000, // default: 3000
     host: '0.0.0.0', // default: localhost,
     timing: false
   },
@@ -30,8 +30,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    { src: '@/plugins/vue-swiper.js', ssr: false },
-    // ["@babel/plugin-proposal-private-methods", { "loose": true }]
+    { src: '@/plugins/vue-swiper.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,5 +48,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
+    // "plugins": ["@babel/plugin-proposal-private-methods", { "loose": true }]
   }
 }

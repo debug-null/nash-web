@@ -3,18 +3,16 @@
 ## Build Setup
 
 ```bash
-# install dependencies
-$ yarn install
+# 安装依赖
+$ npm i or yarn
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# 运行开发环境
+$ npm run dev or yarn dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+# 启动生产环境
+$ npm run build or yarn build
+$ npm run start or yarn start
 
-# generate static project
-$ yarn generate
-```
-
+# pm2 部署
+[Nuxt.js docs](https://nuxtjs.org)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

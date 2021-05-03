@@ -16,16 +16,16 @@
       </ul>
     </div>
     <!-- buy now 悬浮按钮 -->
-    <div class="buy-now" @click="handleBuy">
-      <div>BUY NOW</div>
+    <div class="buy-now">
+      <div @click="toggleBuy">BUY NOW</div>
       <img :src="buy" alt="" />
     </div>
     <!-- 弹窗 -->
-    <div class="buy-modal" v-if="isShowModal" @click="handleClose">
+    <div class="buy-modal" v-if="isShowModal" @click="toggleBuy">
       <div class="buy-modal-inner" @click.stop>
         <img :src="logoI" alt="">
         <div class="modal-title">SHIP</div>
-        <div class="name-input">
+        <div class="name-input" :class="{ flashing: isExist }">
           <input type="text" v-model="spaceName" placeholder="Enter NAME" />
         </div>
         <div v-loading="isLoading" class="check-btn" @click="handleCheckName">CHECK NAME</div>
@@ -34,10 +34,10 @@
     <!-- 向下翻页箭头动画 -->
     <down-arr v-show="isShowArr" class="show-more" />
     <section class="top-part" :style="{ height: bodyHeight + 'px' }">
-      <video class="top-video" muted autoplay poster>
+      <!-- <video class="top-video" muted autoplay poster>
         <source src="https://web.ccpgamescdn.com/aws/eveonline/videos/reign-splash.mp4" type="video/mp4">
         <source src="https://web.ccpgamescdn.com/aws/eveonline/videos/reign-splash.webm" type="video/webm">
-      </video>
+      </video> -->
       <div class="top-content">
         <div class="center-desc">
           <h1>NASH MEATAVERSE</h1>
@@ -68,7 +68,7 @@
       <h-title style="margin-top: 94px;" class="title event-title" text="WHAT IS HAPPENING IN NASH METAVERSE ?" />
       <div class="event-list">
         <img class="v-line" :src="vline"  />
-        <swiper class="event-swiper" ref="event" :options="eventOptions" @slideChange="handleSwiperChange">
+        <swiper class="event-swiper" ref="event" :options="eventOptions">
           <swiper-slide
             class="event-slide"
             v-for="(item, i) in events" :key="i"
@@ -208,6 +208,7 @@ export default {
   },
   data() {
     return {
+      isExist: false, // 名字是否被占用
       isShowModal: false,
       isLoading: false,
       spaceName: '',
@@ -225,6 +226,7 @@ export default {
         { text: "LOGIN", icon: require("@/assets/imgs/login-i.png") },
         { text: "EN", icon: require("@/assets/imgs/lang-i.png") },
       ],
+      // 事件列表
       events: [
         { text: 'April. 15.5000 spaceships' },
         { text: 'April. 13.5000 spaceships' },
@@ -258,6 +260,7 @@ export default {
           disabledClass: "my-button-disabled",
         },
       },
+      // 飞船轮播
       spaceList: [
         { img: require('@/assets/imgs/test1.png') },
         { img: require('@/assets/imgs/test1.png') },
@@ -265,6 +268,7 @@ export default {
         { img: require('@/assets/imgs/test1.png') },
         { img: require('@/assets/imgs/test1.png') },
       ],
+      // 合作伙伴
       parteners: [
         { img: '', link: '' },
         { img: '', link: '' },
@@ -275,6 +279,7 @@ export default {
         { img: '', link: '' },
         { img: '', link: '' },
       ],
+      // 底部菜单配置
       menus: [
         {
           type: "PLAY ONLINE",
@@ -381,39 +386,33 @@ export default {
         return o
       })
     },
-    handleBuy() {
-      // todo  buy now
-      this.isShowModal = true
+    // 打开/关闭购买弹框
+    toggleBuy() {
+      this.isShowModal = !this.isShowModal
     },
-    handleClose() {
-      this.isShowModal = false
-    },
+    // 检查名字
     async handleCheckName() {
       this.isLoading = true
-      const res = await nameAvailable(this.spaceName)
-      console.log(res, 'handleCheckName')
-      if (res) {
-        const ret = await buyShip(this.spaceName)
+      this.isExist = false
+      const isExist = await nameAvailable(this.spaceName)
+      console.log(isExist, 'isExist')
+      if (isExist) {
+        const ret = await buyShip(this.spaceName).catch(e => this.isLoading = false)
         console.log(ret, 'after buy')
-        this.$message({
-          iconClass: 'aaa',
-          message: 'Purchase Successful！ Enter to Start！',
-          // duration: 0,
-        });
+        let msg = ''
+        // 购买成功
+        if (ret) {
+          this.isShowModal = false
+          msg = 'Purchase Successful！ Enter to Start！'
+        } else {
+          msg = 'Purchase Successful！ Please Re-enter！'
+        }
+        this.$message({ iconClass: 'none', message: msg });
+      } else { // 名字被占用加背景闪烁
+        this.isExist = true
+        this.$message({iconClass: 'none', message: 'Name already taken!' });
       }
       this.isLoading = false
-    },
-    handleSwiperChange() {
-      // const i = this.$refs.event.$swiper.activeIndex
-      // Array.from(document.querySelectorAll('.event-item')).map((o, index) => {
-      //   if (index == i+2) {
-      //     o.querySelector('p').classList.add('active')
-      //     o.querySelector('div').classList.add('active')
-      //   } else {
-      //     o.querySelector('p').classList.remove('active')
-      //     o.querySelector('div').classList.remove('active')
-      //   }
-      // })
     },
     onScroll() {
       const scrtop =
@@ -458,643 +457,5 @@ export default {
 };
 </script>
 <style scoped>
-.fadeout {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all .6s ease-in-out;
-}
-.fadein {
-  opacity: 1;
-  transform: translateY(0px);
-}
-.home {
-  position: relative;
-  min-width: 700px;
-}
-.buy-modal {
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  bottom:0;
-  left:0;
-  right: 0;
-  background: rgba(0,0,0,0.5);
-}
-.buy-modal-inner {
-  position: fixed;
-  z-index: 2001;
-  top: 360px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1259px;
-  height: 266px;
-  background-image: url(../assets/imgs/modal-bg.png);
-  background-size: cover;
-}
-.buy-modal-inner img {
-  width: 113px;
-  height: 96px;
-  position: absolute;
-  top: 85px;
-  left: 95px;
-}
-.modal-title {
-  font-size: 34px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: rgba(255, 255,255, .85 );
-  letter-spacing: 10px;
-  padding-left: 376px;
-  padding-top: 10px;
-}
-.name-input {
-    width: 468px;
-    height: 48px;
-    margin-left: 447px;
-    margin-top: 41px;
-    background: #1c5357;
-}
-.name-input input {
-  width: 100%;
-  height: 100%;
-  font-size: 34px;
-  background: transparent;
-  color: #fff;
-  margin-left: 20px;
-}
-input::-webkit-input-placeholder,
-input::-moz-placeholder,
-input:-moz-placeholder,
-input:-ms-input-placeholder
- {
-  font-size: 34px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: #000;
-  opacity: 0.6;
-  padding-left: 80px;
-}
-
-.check-btn {
-  width: 260px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background: #fdd503;
-  color: #1a141a;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: 'ali-bold';
-  margin-left: 512px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-.buy-now {
-  position: fixed;
-  z-index: 100;
-  bottom: 15%;
-  right: 70px;
-  width: 260px;
-  height: 82px;
-  border-radius: 41px;
-  overflow: hidden;
-  cursor: pointer;
-}
-.buy-now div {
-  position: absolute;
-  z-index: 1;
-  width: 260px;
-  height: 82px;
-  line-height: 82px;
-  border-radius: 41px;
-  background: #496dfd;
-  box-shadow: -5px 0px 13px 0px rgba(1, 0, 53, 0.5);
-  right: -300px;
-  font-size: 29px;
-  font-family: ali-bold;
-  font-weight: bold;
-  color: #ffffff;
-  padding-left: 30px;
-  transition: all 0.5s;
-}
-.buy-now img {
-  position: absolute;
-  z-index: 2;
-  right: -7px;
-  top: -11px;
-}
-.buy-now:hover.buy-now div {
-  right: -30px;
-}
-.show-more {
-  position: fixed;
-  z-index: 1000;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 30px;
-}
-.title {
-  padding-left: 214px;
-}
-.top-part{
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 1077px;
-  background-image: url(../assets/imgs/index-1.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.top-video {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
-.top-content {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.mask-up {
-  position: absolute;
-  z-index: 3;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 159px;
-}
-
-.nav-fixed {
-  position: fixed;
-  z-index: 1000;
-  top: -200px;
-  left: 0;
-  width: 100%;
-  padding: 50px 50px;
-  background-color: #14151A;
-  box-sizing: border-box;
-  transition: all .5s;
-}
-.nav-bar {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 50px 70px;
-  box-sizing: border-box;
-  transition: all .5s;
-}
-.nav-left img {
-  margin-right: 47px;
-}
-.nav-left ul li {
-  font-size: 20px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  margin-right: 40px;
-  cursor: pointer;
-}
-.nav-left ul li:hover {
-  color: #fed402;
-}
-.nav-right li {
-  font-size: 20px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  margin-left: 47px;
-  cursor: pointer;
-}
-.nav-right li img {
-  margin-right: 10px;
-}
-.center-desc {
-  margin-top: 270px;
-}
-.center-desc h1 {
-  font-size: 82px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-}
-.center-desc p {
-  font-size: 40px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: #ffffff;
-  text-align: center;
-  letter-spacing: 18px;
-}
-.top-btns {
-  margin-top: 60px;
-  cursor: pointer;
-}
-.top-btns > div {
-  position: relative;
-  width: 284px;
-  height: 82px;
-  line-height: 82px;
-  text-align: center;
-  font-size: 30px;
-  font-family: ali-bold;
-  font-weight: bold;
-  color: #19131a;
-  overflow: hidden;
-}
-.top-btns > div span {
-  opacity: 0;
-  animation: opacity 0.3s;
-  animation-delay: .3s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-@keyframes opacity {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.enter-btn {
-  margin-right: 35px;
-  background: #ffd600;
-}
-.enter-btn:before,
-.guest-btn:before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0px;
-  width: 110%;
-  height: 102%;
-  filter: brightness(1.07);
-  opacity: 0;
-  transform: translate3d(-100%, 0px, 0px);
-  transition: transform 0.4s ease 0s, opacity 0.4s ease 0s;
-}
-.enter-btn:before {
-  background-color: rgb(254, 212, 0);
-}
-.guest-btn:before {
-  background-color: #dedede;
-}
-.guest-btn {
-  margin-right: 35px;
-  background: #fff;
-}
-.enter-btn:hover:before,
-.guest-btn:hover:before {
-  opacity: 1;
-  transform: translate3d(0px, 0px, 0px);
-}
-
-.what-is {
-  position: absolute;
-  bottom: 60px;
-  padding-left: 60px;
-  margin-top: 220px;
-}
-.what-is h1 {
-  font-size: 30px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffd600;
-}
-.what-is p {
-  font-size: 22px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: #ffffff;
-  line-height: 36px;
-  opacity: 0.6;
-}
-.event-part {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 1244px;
-  background-image: url(../assets/imgs/index-2.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-.event-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-.mask-down {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 305px;
-}
-.event-list {
-  position: relative;
-  width: 500px;
-  height: 300px;
-  margin: 0 auto;
-  margin-top: 575px;
-}
-.v-line {
-  position: absolute;
-  top: -80px;
-  left: 10px;
-}
-.event-swiper {
-  width: 100%;
-  height: 300px;
-}
-.event-item {
-  align-items: center;
-  padding-left: 6px;
-}
-.event-item p {
-  font-size: 20px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: rgba(255, 255, 255, .6);
-  transition: all .5s;
-}
-.event-slide.swiper-slide-active .event-item p {
-  font-size: 30px;
-  line-height: 30px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: rgba(255, 255, 255,1);
-}
-.event-item div {
-  width: 11px;
-  height: 11px;
-  background: #fff;
-  border-radius: 50%;
-  margin-right: 37px;
-  transition: all .5s;
-}
-.event-slide.swiper-slide-active .event-item div {
-  width: 14px;
-  height: 14px;
-  margin-left: -2px;
-}
-.game-part {
-  overflow: hidden;
-  width: 100%;
-  height: 2126px;
-  background-image: url(../assets/imgs/index-3.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-.game-play {
-  position: relative;
-  width: 100%;
-  height: 900px;
-  transform: translate3d(30px,0,0);
-  transition: transform .8s,opacity .4s;
-  transition-timing-function: cubic-bezier(.165,.84,.44,1);
-}
-.fade-right {
-  transform: translateZ(0);
-}
-.jump-img {
-  width: 1064px;
-  height: 693px;
-  position: absolute;
-  z-index: 1;
-}
-.nft-img {
-  width: 931px;
-  height: 600px;
-  position: absolute;
-  z-index: 1;
-}
-.game-play div {
-  position: absolute;
-  z-index: 2;
-  width: 641px;
-}
-.ltr {
-  margin-top: 217px;
-}
-.ltr > img {
-  left: 212px;
-}
-.ltr > div {
-  right: 270px;
-  margin-top: 150px;
-}
-.rtl {
-  margin-top: 270px;
-}
-.rtl > img {
-  right: 260px;
-}
-.rtl > div {
-  left: 248px;
-  margin-top: 120px;
-}
-.game-play div h1 {
-  font-size: 56px;
-  line-height: 56px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-.game-play div p {
-  font-size: 24px;
-  line-height: 26px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-.space-part {
-  overflow: hidden;
-  width: 100%;
-  height: 1624px;
-  background-image: url(../assets/imgs/index-4.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-.swiper-part {
-  position: relative;
-  height: 500px;
-}
-.swiper-part .swiper-container {
-  height: 100%;
-}
-.swiper-box {
-  width: 100%;
-  height: 400px;
-}
-.swiper-box.swiper-slide-active img {
-  transform: scale(2);
-}
-.swiper-img {
-  width: 300px;
-  height: 160px;
-  display: block;
-  margin: 0 auto;
-  transition: all .5s ease-in-out;
-}
-.prev,
-.next {
-  width: 84px;
-  height: 84px;
-  background: rgba(255, 255, 255, 0.2);
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  cursor: pointer;
-  background-size: cover;
-  outline: none;
-}
-.prev {
-  background-image: url(../assets/imgs/arr-left-i.png);
-  left: 40px;
-}
-.prev:hover {
-  background-image: url(../assets/imgs/arr-left.png);
-}
-.next {
-  background-image: url(../assets/imgs/arr-right-i.png);
-  right: 40px;
-}
-.next:hover {
-  background-image: url(../assets/imgs/arr-right.png);
-}
-.props {
-  margin-top: 190px;
-}
-.props img {
-  display: block;
-  margin: 0 auto;
-}
-.props p {
-  font-size: 24px;
-  font-family: ali-regular;
-  font-weight: 400;
-  color: #999999;
-  width: 1183px;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 70px;
-}
-.foot-part {
-  width: 100%;
-  height: 2291px;
-  background-image: url(../assets/imgs/index-5.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-
-.part-list {
-  margin-top: 90px;
-  flex-wrap: wrap;
-}
-.part-list div {
-  width: 320px;
-  height: 194px;
-  background: #d8d8d8;
-  border: 1px solid #979797;
-  opacity: 0.2;
-  margin-bottom: 60px;
-  background-size: cover;
-}
-@media screen and (max-width: 1700px) {
-  .part-list div {
-    width: 280px;
-    height: 180px;
-    margin-bottom: 46px;
-  }
-}
-
-.follow {
-  font-size: 40px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 424px;
-  margin-bottom: 170px;
-}
-.brand-icon {
-  position: relative;
-  margin-right: 120px;
-  cursor: pointer;
-}
-.brand-icon:last-child {
-  margin-right: 0;
-}
-.brand-desc {
-  position: absolute;
-  left: 35px;
-  bottom: -20px;
-  padding: 10px 20px;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, .8);
-  background-color: rgba(255, 255, 255, .3);
-  text-align: center;
-}
-.bottom-menu {
-  width: 1200px;
-  margin: 0 auto;
-  margin-top: 100px;
-}
-.bottom-menu div {
-  padding-left: 50px;
-}
-.menu-inner {
-  width: 230px;
-  margin: 0 auto;
-}
-.type-name {
-  font-size: 16px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #999999;
-  margin: 0 auto;
-  margin-bottom: 34px;
-}
-.menu-list li {
-  font-size: 16px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  margin-bottom: 27px;
-  cursor: pointer;
-}
-.game-info {
-  height: 56px;
-  font-size: 16px;
-  font-family: ali-medium;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 107px;
-}
-
+@import './index.css'
 </style>
