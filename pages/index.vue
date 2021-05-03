@@ -125,7 +125,7 @@
         <no-ssr>
           <swiper ref="spaceSwiper" :options="swiperOption">
             <swiper-slide
-              class="swiper-box flex-vc"
+              class="swiper-box flex-cc"
               v-for="(item, i) in spaceList"
               :key="i"
             >
