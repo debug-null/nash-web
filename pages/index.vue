@@ -465,8 +465,8 @@ export default {
     },
     // 打开/关闭购买弹框
     toggleBuy() {
+      this.spaceName = ''
       // 钱包是否连接成功
-      console.log(ShipContract, '333')
       this.isConnectWallet = !!ShipContract
       this.isShowModal = !this.isShowModal;
     },
@@ -478,6 +478,9 @@ export default {
     },
     // 购买
     async handleBuy() {
+      if (this.isLoading) {
+        return false
+      }
       // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
       // ②直接将检查名称checkName变为mintShip
       this.startFlashing = false;
