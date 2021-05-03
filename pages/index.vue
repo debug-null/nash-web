@@ -481,7 +481,7 @@ export default {
         }
         this.isLoading = false;
       } else {
-        // 名字被占用加背景闪烁
+        // 名字empty
         this.isExist = true;
         this.$message({ iconClass: "none", message: "Name empty!" });
         this.isLoading = false;
