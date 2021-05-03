@@ -13,9 +13,13 @@
         </ul>
       </div>
       <ul class="nav-right flex-hbc">
-        <li class="flex-hbc" v-for="(item, i) in navRight" :key="i">
-          <img :src="item.icon" />
-          <span>{{ item.text }}</span>
+        <li class="flex-hbc" @click="handleLogin">
+          <img v-if="!addressNow" :src="login" />
+          <span> {{ addressNow ? addressNow : 'LOGIN' }}</span>
+        </li>
+        <li class="flex-hbc">
+          <img :src="lang" />
+          <span>EN</span>
         </li>
       </ul>
     </div>
@@ -238,6 +242,7 @@ export default {
   },
   data() {
     return {
+      addressNow: '',
       isConnectWallet: false,
       startFlashing: false, // 名字是否被占用
       isShowModal: false,
@@ -252,10 +257,6 @@ export default {
         { text: "SPACESHIP", link: "" },
         { text: "GAMEPLAY", link: "" },
         { text: "PARTENERS", link: "" },
-      ],
-      navRight: [
-        { text: "LOGIN", icon: require("@/assets/imgs/login-i.png") },
-        { text: "EN", icon: require("@/assets/imgs/lang-i.png") },
       ],
       // 事件列表
       events: [
@@ -400,6 +401,15 @@ export default {
     };
   },
   computed: {
+    login: function () {
+      return require("@/assets/imgs/login-i.png");
+    },
+    lang: function () {
+      return require("@/assets/imgs/lang-i.png");
+    },
+    logo: function () {
+      return require("@/assets/imgs/logo.png");
+    },
     logo: function () {
       return require("@/assets/imgs/logo.png");
     },
@@ -429,6 +439,12 @@ export default {
     },
   },
   methods: {
+    handleLogin() {
+      doLogin()
+      if (addressNow) {
+        this.addressNow = `${addressNow.substr(0,6)}......${addressNow.substr(-4)}`
+      }
+    },
     handelEnterBrand(index) {
       this.brands = this.brands.map((o, i) => {
         if (index == i) {
@@ -552,6 +568,9 @@ export default {
       this.isShowArr = scrtop < 30;
       this.isShowNav = scrtop > 160;
       window.addEventListener("scroll", this.onScroll);
+      setTimeout(() => {
+        this.handleLogin()
+      }, 2000)
     }
     // 请求示例   axios base配置请看  /plugins/axios.js文件
     this.$axios.get("/testGet").then((res) => {

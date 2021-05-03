@@ -593,10 +593,29 @@
     background-size: cover;
   }
   @media screen and (max-width: 1700px) {
+    .center-desc {
+      transform: scale(.8);
+      margin-top: 150px;
+    }
     .part-list div {
       width: 280px;
       height: 180px;
       margin-bottom: 46px;
+    }
+    .jump-img, .nft-img {
+      transform: scale(.7);
+    }
+    .rtl > img {
+      right: 0;
+    }
+    .rtl > div {
+      left: 140px;
+    }
+    .ltr > img {
+      left: 0;
+    }
+    .ltr > div {
+      right: 90px;
     }
   }
   
