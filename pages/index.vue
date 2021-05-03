@@ -29,11 +29,11 @@
       <div class="buy-modal-inner" @click.stop>
         <img :src="logoI" alt="" />
         <div class="modal-title">SHIP</div>
-        <div class="name-input" :class="{ flashing: isExist }">
+        <div class="name-input" :class="{ flashing: startFlashing }">
           <input type="text" v-model="spaceName" placeholder="Enter NAME" />
         </div>
-        <div v-loading="isLoading" class="check-btn" @click="handleCheckName">
-          MINT SHIP
+        <div v-loading="isLoading" class="check-btn" @click="handleBuy">
+          {{ isConnectWallet ? 'MINT SHIP' : 'install wallet' }}
         </div>
       </div>
     </div>
@@ -238,7 +238,8 @@ export default {
   },
   data() {
     return {
-      isExist: false, // 名字是否被占用
+      isConnectWallet: false,
+      startFlashing: false, // 名字是否被占用
       isShowModal: false,
       isLoading: false,
       spaceName: "",
@@ -448,43 +449,57 @@ export default {
     },
     // 打开/关闭购买弹框
     toggleBuy() {
+      // 钱包是否连接成功
+      console.log(ShipContract, '333')
+      this.isConnectWallet = !!ShipContract
       this.isShowModal = !this.isShowModal;
     },
-    // 检查名字
-    async handleCheckName() {
+    runFlashing() {
+      this.startFlashing = true;
+      setTimeout(() => {
+        this.startFlashing = false;
+      }, 4000)
+    },
+    // 购买
+    async handleBuy() {
       // todo:
       // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
       // ②直接将检查名称checkName变为mintShip
-      this.isLoading = true;
-      this.isExist = false;
-      if (this.spaceName != "") {
-        const isExist = await nameAvailable(this.spaceName);
-        console.log(isExist, "isExist");
-        if (isExist) {
-          const ret = await buyShip(this.spaceName).catch(
-            (e) => (this.isLoading = false)
-          );
-          console.log(ret, "after buy");
-          let msg = "";
-          // 购买成功
-          if (ret) {
-            this.isShowModal = false;
-            msg = "Purchase Successful！ Enter to Start！";
-          } else {
-            msg = "Purchase ERROR! Please Re-enter！";
-          }
-          this.$message({ iconClass: "none", message: msg });
-        } else {
-          // 名字被占用加背景闪烁
-          this.isExist = true;
-          this.$message({ iconClass: "none", message: "Name already taken!" });
-        }
-        this.isLoading = false;
+      this.startFlashing = false;
+      if (!this.isConnectWallet) {
+        this.isShowModal = false;
+        window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn', '_blank')
       } else {
-        // 名字empty
-        this.isExist = true;
-        this.$message({ iconClass: "none", message: "Name empty!" });
-        this.isLoading = false;
+        this.isLoading = true;
+        if (this.spaceName != "") {
+          const isExist = await nameAvailable(this.spaceName);
+          console.log(isExist, "isExist");
+          if (isExist) {
+            const ret = await buyShip(this.spaceName).catch(
+              (e) => (this.isLoading = false)
+            );
+            console.log(ret, "after buy");
+            let msg = "";
+            // 购买成功
+            if (ret) {
+              this.isShowModal = false;
+              msg = "Purchase Successful！ Enter to Start！";
+            } else {
+              msg = "Purchase ERROR! Please Re-enter！";
+            }
+            this.$message({ iconClass: "none", message: msg });
+          } else {
+            // 名字被占用加背景闪烁
+            this.runFlashing();
+            this.$message({ iconClass: "none", message: "Name already taken!" });
+          }
+          this.isLoading = false;
+        } else {
+          // 名字empty
+          this.runFlashing();
+          this.$message({ iconClass: "none", message: "Name empty!" });
+          this.isLoading = false;
+        }
       }
     },
     onScroll() {
