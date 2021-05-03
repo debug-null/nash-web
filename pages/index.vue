@@ -452,9 +452,8 @@ export default {
     },
     // 检查名字
     async handleCheckName() {
-      // todo:
-      // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
-      // ②直接将检查名称checkName变为mintShip
+      // TODO:
+      // 根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
       this.isLoading = true;
       this.isExist = false;
       if (this.spaceName != "") {
@@ -471,7 +470,7 @@ export default {
             this.isShowModal = false;
             msg = "Purchase Successful！ Enter to Start！";
           } else {
-            msg = "Purchase ERROR! Please Re-enter！";
+            msg = "Purchase ERROR! ";
           }
           this.$message({ iconClass: "none", message: msg });
         } else {
