@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <!-- 吸顶导航 -->
-    <div class="flex-hbc" :class="[isShowNav? 'nav-fixed' : 'nav-bar']" :style="{ top: isShowNav ? '0' : ''}">
+    <div
+      class="flex-hbc"
+      :class="[isShowNav ? 'nav-fixed' : 'nav-bar']"
+      :style="{ top: isShowNav ? '0' : '' }"
+    >
       <div class="nav-left flex-hbc">
         <img :src="logo" />
         <ul class="flex-hbc">
@@ -23,12 +27,14 @@
     <!-- 弹窗 -->
     <div class="buy-modal" v-if="isShowModal" @click="toggleBuy">
       <div class="buy-modal-inner" @click.stop>
-        <img :src="logoI" alt="">
+        <img :src="logoI" alt="" />
         <div class="modal-title">SHIP</div>
         <div class="name-input" :class="{ flashing: isExist }">
           <input type="text" v-model="spaceName" placeholder="Enter NAME" />
         </div>
-        <div v-loading="isLoading" class="check-btn" @click="handleCheckName">CHECK NAME</div>
+        <div v-loading="isLoading" class="check-btn" @click="handleCheckName">
+          MINT SHIP
+        </div>
       </div>
     </div>
     <!-- 向下翻页箭头动画 -->
@@ -53,11 +59,12 @@
             NASH METAVERSE is a blockchain Metaverse MMO game, an evolving game
             universe.
           </p>
-          <p> With its first game NASH UNIVERSE, players can obtain
-            spaceships, gather NASHICAL to </p>
+          <p>
+            With its first game NASH UNIVERSE, players can obtain spaceships,
+            gather NASHICAL to
+          </p>
           <p>upgrade spaceships and JUMP in space to win resources.</p>
-          <p>Enter Nash Universe, create the most valuable
-            collection.</p>
+          <p>Enter Nash Universe, create the most valuable collection.</p>
         </div>
       </div>
       <img class="mask-up" :src="maskUp" />
@@ -65,18 +72,23 @@
     <!-- 事件部分 -->
     <section class="event-part">
       <img class="mask-down" :src="maskDown" />
-      <h-title style="margin-top: 94px;" class="title event-title" text="WHAT IS HAPPENING IN NASH METAVERSE ?" />
+      <h-title
+        style="margin-top: 94px"
+        class="title event-title"
+        text="WHAT IS HAPPENING IN NASH METAVERSE ?"
+      />
       <div class="event-list">
-        <img class="v-line" :src="vline"  />
+        <img class="v-line" :src="vline" />
         <no-ssr>
           <swiper class="event-swiper" ref="event" :options="eventOptions">
             <swiper-slide
               class="event-slide"
-              v-for="(item, i) in events" :key="i"
+              v-for="(item, i) in events"
+              :key="i"
             >
               <div class="event-item flex">
                 <div></div>
-                <p>{{item.text}}</p>
+                <p>{{ item.text }}</p>
               </div>
             </swiper-slide>
           </swiper>
@@ -149,19 +161,37 @@
         <el-col :span="20">
           <h-title text="PARTENERS" />
           <div class="flex-hb part-list">
-            <div :style="{ backgroundImage: `url(${item.img})` }" v-for="(item, i) in parteners" :key="i"></div>
+            <div
+              :style="{ backgroundImage: `url(${item.img})` }"
+              v-for="(item, i) in parteners"
+              :key="i"
+            ></div>
           </div>
         </el-col>
       </el-row>
       <h3 class="follow fadeout">FOLLOW NASH METAVERSE</h3>
       <div class="flex-hc fadeout">
-        <div @mouseover="handelEnterBrand(i)" @mouseleave="handelLeaveBrand(i)" class="brand-icon" v-for="(item, i) in brands" :key="i">
+        <div
+          @mouseover="handelEnterBrand(i)"
+          @mouseleave="handelLeaveBrand(i)"
+          class="brand-icon"
+          v-for="(item, i) in brands"
+          :key="i"
+        >
           <img :src="item.icon" alt="" />
-          <div v-if="item.isActive" class="brand-desc">{{item.title}}</div>
+          <div v-if="item.isActive" class="brand-desc">{{ item.title }}</div>
         </div>
       </div>
       <el-row class="bottom-menu fadeout">
-        <el-col :xl="6" :lg="6" :md="6" :sm="12" :xs="24" v-for="item in menus" :key="item.type">
+        <el-col
+          :xl="6"
+          :lg="6"
+          :md="6"
+          :sm="12"
+          :xs="24"
+          v-for="item in menus"
+          :key="item.type"
+        >
           <div class="menu-inner">
             <h4 class="type-name">{{ item.type }}</h4>
             <ul class="menu-list">
@@ -180,8 +210,8 @@
           can cross
         </p>
         <p>
-          thousands of planetary systems and participate in activities
-          with thousand other players, by battle, trade and exploration.
+          thousands of planetary systems and participate in activities with
+          thousand other players, by battle, trade and exploration.
         </p>
       </div>
     </section>
@@ -193,14 +223,14 @@ import HTitle from "@/components/HTitle";
 import DownArr from "@/components/DownArr";
 
 export default {
-  head () {
+  head() {
     return {
       script: [
-          { src: './js/web3.min.js' },
-          { src: './js/ShipABI.js' },
-          { src: './js/buy.js' },
-      ]
-    }
+        { src: "./js/web3.min.js" },
+        { src: "./js/ShipABI.js" },
+        { src: "./js/buy.js" },
+      ],
+    };
   },
   components: {
     HTitle,
@@ -211,16 +241,16 @@ export default {
       isExist: false, // 名字是否被占用
       isShowModal: false,
       isLoading: false,
-      spaceName: '',
+      spaceName: "",
       bodyHeight: 0,
       isShowNav: false,
       isShowArr: false,
       navLeft: [
-        { text: "ABOUT", link: '' },
-        { text: "EVENTS", link: '' },
-        { text: "SPACESHIP", link: ''  },
-        { text: "GAMEPLAY", link: ''  },
-        { text: "PARTENERS", link: ''  },
+        { text: "ABOUT", link: "" },
+        { text: "EVENTS", link: "" },
+        { text: "SPACESHIP", link: "" },
+        { text: "GAMEPLAY", link: "" },
+        { text: "PARTENERS", link: "" },
       ],
       navRight: [
         { text: "LOGIN", icon: require("@/assets/imgs/login-i.png") },
@@ -228,18 +258,18 @@ export default {
       ],
       // 事件列表
       events: [
-        { text: 'April. 15.5000 spaceships' },
-        { text: 'April. 13.5000 spaceships' },
-        { text: 'April. 14.5000 spaceships' },
-        { text: 'April. 12.5000 spaceships' },
-        { text: 'April. 10.5000 spaceships' },
+        { text: "April. 15.5000 spaceships" },
+        { text: "April. 13.5000 spaceships" },
+        { text: "April. 14.5000 spaceships" },
+        { text: "April. 12.5000 spaceships" },
+        { text: "April. 10.5000 spaceships" },
       ],
       eventOptions: {
         direction: "vertical",
         loop: true,
         autoplay: {
           delay: 1000,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         },
         speed: 1000,
         slidesPerView: 5,
@@ -262,22 +292,22 @@ export default {
       },
       // 飞船轮播
       spaceList: [
-        { img: require('@/assets/imgs/test1.png') },
-        { img: require('@/assets/imgs/test1.png') },
-        { img: require('@/assets/imgs/test1.png') },
-        { img: require('@/assets/imgs/test1.png') },
-        { img: require('@/assets/imgs/test1.png') },
+        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/test1.png") },
       ],
       // 合作伙伴
       parteners: [
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
-        { img: '', link: '' },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
+        { img: "", link: "" },
       ],
       // 底部菜单配置
       menus: [
@@ -329,41 +359,71 @@ export default {
         },
       ],
       brands: [
-        { icon: require('@/assets/imgs/facebook-i.png'), title: 'facebook', isActive: false, link: '' },
-        { icon: require('@/assets/imgs/twitter-i.png'), title: 'twitter', isActive: false, link: '' },
-        { icon: require('@/assets/imgs/youtube-i.png'), title: 'youtube', isActive: false, link: '' },
-        { icon: require('@/assets/imgs/twitch-i.png'), title: 'twitch', isActive: false, link: '' },
-        { icon: require('@/assets/imgs/instagram-i.png'), title: 'instagram', isActive: false, link: '' },
-        { icon: require('@/assets/imgs/vk-i.png'), title: 'vk', isActive: false, link: '' },
-      ]
+        {
+          icon: require("@/assets/imgs/facebook-i.png"),
+          title: "facebook",
+          isActive: false,
+          link: "",
+        },
+        {
+          icon: require("@/assets/imgs/twitter-i.png"),
+          title: "twitter",
+          isActive: false,
+          link: "",
+        },
+        {
+          icon: require("@/assets/imgs/youtube-i.png"),
+          title: "youtube",
+          isActive: false,
+          link: "",
+        },
+        {
+          icon: require("@/assets/imgs/twitch-i.png"),
+          title: "twitch",
+          isActive: false,
+          link: "",
+        },
+        {
+          icon: require("@/assets/imgs/instagram-i.png"),
+          title: "instagram",
+          isActive: false,
+          link: "",
+        },
+        {
+          icon: require("@/assets/imgs/vk-i.png"),
+          title: "vk",
+          isActive: false,
+          link: "",
+        },
+      ],
     };
   },
   computed: {
-    logo: function() {
+    logo: function () {
       return require("@/assets/imgs/logo.png");
     },
-    logoI: function() {
+    logoI: function () {
       return require("@/assets/imgs/logo-i.png");
     },
-    buy: function() {
+    buy: function () {
       return require("@/assets/imgs/buy-i.png");
     },
-    props: function() {
+    props: function () {
       return require("@/assets/imgs/prop-icon.png");
     },
-    jump: function() {
+    jump: function () {
       return require("@/assets/imgs/jump.png");
     },
-    nft: function() {
+    nft: function () {
       return require("@/assets/imgs/nft.png");
     },
-    vline: function() {
+    vline: function () {
       return require("@/assets/imgs/v-line.png");
     },
-    maskUp: function() {
+    maskUp: function () {
       return require("@/assets/imgs/mask-up.png");
     },
-    maskDown: function() {
+    maskDown: function () {
       return require("@/assets/imgs/mask-down.png");
     },
   },
@@ -371,75 +431,89 @@ export default {
     handelEnterBrand(index) {
       this.brands = this.brands.map((o, i) => {
         if (index == i) {
-          o.icon = require(`@/assets/imgs/${o.title}.png`)
-          o.isActive = true
+          o.icon = require(`@/assets/imgs/${o.title}.png`);
+          o.isActive = true;
         }
-        return o
-      })
+        return o;
+      });
     },
     handelLeaveBrand(index) {
       this.brands = this.brands.map((o, i) => {
         if (index == i) {
-          o.icon = require(`@/assets/imgs/${o.title}-i.png`)
-          o.isActive = false
+          o.icon = require(`@/assets/imgs/${o.title}-i.png`);
+          o.isActive = false;
         }
-        return o
-      })
+        return o;
+      });
     },
     // 打开/关闭购买弹框
     toggleBuy() {
-      this.isShowModal = !this.isShowModal
+      this.isShowModal = !this.isShowModal;
     },
     // 检查名字
     async handleCheckName() {
-      this.isLoading = true
-      this.isExist = false
-      const isExist = await nameAvailable(this.spaceName)
-      console.log(isExist, 'isExist')
-      if (isExist) {
-        const ret = await buyShip(this.spaceName).catch(e => this.isLoading = false)
-        console.log(ret, 'after buy')
-        let msg = ''
-        // 购买成功
-        if (ret) {
-          this.isShowModal = false
-          msg = 'Purchase Successful！ Enter to Start！'
+      // todo:
+      // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
+      // ②直接将检查名称checkName变为mintShip
+      this.isLoading = true;
+      this.isExist = false;
+      if (this.spaceName != "") {
+        const isExist = await nameAvailable(this.spaceName);
+        console.log(isExist, "isExist");
+        if (isExist) {
+          const ret = await buyShip(this.spaceName).catch(
+            (e) => (this.isLoading = false)
+          );
+          console.log(ret, "after buy");
+          let msg = "";
+          // 购买成功
+          if (ret) {
+            this.isShowModal = false;
+            msg = "Purchase Successful！ Enter to Start！";
+          } else {
+            msg = "Purchase ERROR! Please Re-enter！";
+          }
+          this.$message({ iconClass: "none", message: msg });
         } else {
-          msg = 'Purchase Successful！ Please Re-enter！'
+          // 名字被占用加背景闪烁
+          this.isExist = true;
+          this.$message({ iconClass: "none", message: "Name already taken!" });
         }
-        this.$message({ iconClass: 'none', message: msg });
-      } else { // 名字被占用加背景闪烁
-        this.isExist = true
-        this.$message({iconClass: 'none', message: 'Name already taken!' });
+        this.isLoading = false;
+      } else {
+        // 名字被占用加背景闪烁
+        this.isExist = true;
+        this.$message({ iconClass: "none", message: "Name empty!" });
+        this.isLoading = false;
       }
-      this.isLoading = false
     },
     onScroll() {
       const scrtop =
         document.documentElement.scrollTop | document.body.scrollTop;
-      this.isShowArr = scrtop < 30
-      this.isShowNav = scrtop > 160
+      this.isShowArr = scrtop < 30;
+      this.isShowNav = scrtop > 160;
 
-
-      Array.from(document.querySelectorAll('.fadeout')).map(o => {
-        const top = o.getBoundingClientRect().top
-        if (top < this.bodyHeight && !o.classList.contains('fadein')) {
-          o.classList.add('fadein')
+      Array.from(document.querySelectorAll(".fadeout")).map((o) => {
+        const top = o.getBoundingClientRect().top;
+        if (top < this.bodyHeight && !o.classList.contains("fadein")) {
+          o.classList.add("fadein");
         }
-      })
+      });
       Array.from(document.querySelectorAll(".h-title")).map((o) => {
         const top = o.getBoundingClientRect().top;
         if (top < this.bodyHeight) {
-          const content = o.querySelector('.content')
-          const img = o.querySelector('img')
-          !content.classList.contains("title-enter") && content.classList.add("title-enter")
-          !img.classList.contains("line-enter") && img.classList.add("line-enter")
+          const content = o.querySelector(".content");
+          const img = o.querySelector("img");
+          !content.classList.contains("title-enter") &&
+            content.classList.add("title-enter");
+          !img.classList.contains("line-enter") &&
+            img.classList.add("line-enter");
         }
       });
       Array.from(document.querySelectorAll(".game-play")).map((o) => {
         const top = o.getBoundingClientRect().top;
         if (top < this.bodyHeight) {
-          !o.classList.contains("fade-right") && o.classList.add("fade-right")
+          !o.classList.contains("fade-right") && o.classList.add("fade-right");
         }
       });
     },
@@ -450,27 +524,29 @@ export default {
   // 服务端数据获取
   async asyncData({ app }) {
     // console.log(process.env.baseUrl, '环境变量')
-    const ip = await app.$axios.$get('http://icanhazip.com')
-    return { ip }
+    const ip = await app.$axios.$get("http://icanhazip.com");
+    return { ip };
   },
   mounted() {
-    if (process.browser) { 
-      this.bodyHeight = document.documentElement.clientHeight || window.innerHeight;
-      const scrtop = document.documentElement.scrollTop | document.body.scrollTop;
-      this.isShowArr = scrtop < 30
-      this.isShowNav = scrtop > 160
+    if (process.browser) {
+      this.bodyHeight =
+        document.documentElement.clientHeight || window.innerHeight;
+      const scrtop =
+        document.documentElement.scrollTop | document.body.scrollTop;
+      this.isShowArr = scrtop < 30;
+      this.isShowNav = scrtop > 160;
       window.addEventListener("scroll", this.onScroll);
     }
     // 请求示例   axios base配置请看  /plugins/axios.js文件
-    this.$axios.get('/testGet').then(res=>{
-      console.log(res)
-    })
-    this.$axios.post('/testPost').then(res=>{
-      console.log(res)
-    })
+    this.$axios.get("/testGet").then((res) => {
+      console.log(res);
+    });
+    this.$axios.post("/testPost").then((res) => {
+      console.log(res);
+    });
   },
 };
 </script>
 <style scoped>
-@import './index.css'
+@import "./index.css";
 </style>

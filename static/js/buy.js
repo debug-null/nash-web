@@ -4,13 +4,18 @@ var addressNow;
 var setting = {}
 var networkId;
 // 初始化钱包连接
-ethereum.request({ method: 'eth_requestAccounts' }).then((res) => {
-    // console.log('eth:', res)\
-    addressNow = res[0];
-    console.log('Now account:', addressNow);
-    web3js = new Web3(window.ethereum);
-    getNetworkInterval = self.setInterval("getNetwork()", 2000);
-})
+try {
+    ethereum.request({ method: 'eth_requestAccounts' }).then((res) => {
+        // console.log('eth:', res)\
+        addressNow = res[0];
+        console.log('Now account:', addressNow);
+        web3js = new Web3(window.ethereum);
+        getNetworkInterval = self.setInterval("getNetwork()", 2000);
+    })
+} catch (error) {
+    console.log('Connect err',error);
+}
+
 // 通过钱包来初始化区块链链接
 function getNetwork() {
     if (ShipContract == undefined) {
@@ -63,10 +68,11 @@ async function buyShip(playerName) {
     let price = web3js.utils.toWei(String((Math.ceil((await ShipContract.methods.shipPrice().call()) / web3js.utils.toWei('0.1', 'ether'))) * 0.1), 'ether')
     try {
         const res = await ShipContract.methods.orderShip(playerName).send({ from: addressNow, value: price });
-        console.log(res, 1111)
+        console.log(1111,res)
     } catch (err) {
         // 当用户取消交易时处理
-        return;
+        return false;
     }
     // 当用户购买成功处理
+    return true;
 }
