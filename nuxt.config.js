@@ -22,6 +22,11 @@ export default {
     host: '0.0.0.0', // default: localhost,
     timing: false
   },
+  router: {
+    scrollBehavior (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'element-ui/lib/theme-chalk/index.css',

@@ -573,12 +573,12 @@ export default {
       }, 2000)
     }
     // 请求示例   axios base配置请看  /plugins/axios.js文件
-    this.$axios.get("/testGet").then((res) => {
-      console.log(res);
-    });
-    this.$axios.post("/testPost").then((res) => {
-      console.log(res);
-    });
+    // this.$axios.get("/testGet").then((res) => {
+    //   console.log(res);
+    // });
+    // this.$axios.post("/testPost").then((res) => {
+    //   console.log(res);
+    // });
   },
 };
 </script>
