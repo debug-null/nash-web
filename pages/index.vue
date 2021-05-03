@@ -20,8 +20,8 @@
       </ul>
     </div>
     <!-- buy now 悬浮按钮 -->
-    <div class="buy-now">
-      <div @click="toggleBuy">BUY NOW</div>
+    <div class="buy-now" @click="toggleBuy">
+      <div>BUY NOW</div>
       <img :src="buy" alt="" />
     </div>
     <!-- 弹窗 -->
@@ -475,6 +475,7 @@ export default {
           const isExist = await nameAvailable(this.spaceName);
           console.log(isExist, "isExist");
           if (isExist) {
+            this.$message({ iconClass: "none", message: "Congratulations! Name is available. Evoke transaction." });
             const ret = await buyShip(this.spaceName).catch(
               (e) => (this.isLoading = false)
             );
@@ -485,7 +486,7 @@ export default {
               this.isShowModal = false;
               msg = "Purchase Successful！ Enter to Start！";
             } else {
-              msg = "Purchase ERROR! Please Re-enter！";
+              msg = "Purchase Cancelled!";
             }
             this.$message({ iconClass: "none", message: msg });
           } else {

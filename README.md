@@ -1,4 +1,4 @@
-# nash-web
+# NASH Metaverse
 
 ## Build Setup
 
