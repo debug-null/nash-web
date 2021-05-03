@@ -478,46 +478,45 @@ export default {
     },
     // 购买
     async handleBuy() {
-      // todo:
       // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
       // ②直接将检查名称checkName变为mintShip
       this.startFlashing = false;
+      // 没有安装钱包插件
       if (!this.isConnectWallet) {
         this.isShowModal = false;
         window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn', '_blank')
-      } else {
-        this.isLoading = true;
-        if (this.spaceName != "") {
-          const isExist = await nameAvailable(this.spaceName);
-          console.log(isExist, "isExist");
-          if (isExist) {
-            this.$message({ iconClass: "none", message: "Congratulations! Name is available. Evoke transaction." });
-            const ret = await buyShip(this.spaceName).catch(
-              (e) => (this.isLoading = false)
-            );
-            console.log(ret, "after buy");
-            let msg = "";
-            // 购买成功
-            if (ret) {
-              this.isShowModal = false;
-              msg = "Purchase Successful！ Enter to Start！";
-            } else {
-              msg = "Purchase Cancelled!";
-            }
-            this.$message({ iconClass: "none", message: msg });
-          } else {
-            // 名字被占用加背景闪烁
-            this.runFlashing();
-            this.$message({ iconClass: "none", message: "Name already taken!" });
-          }
-          this.isLoading = false;
-        } else {
-          // 名字empty
-          this.runFlashing();
-          this.$message({ iconClass: "none", message: "Name empty!" });
-          this.isLoading = false;
-        }
+        return false
+      } 
+      // 名字empty
+      if (!this.spaceName) {
+        this.runFlashing();
+        this.$message({ iconClass: "none", message: "Name empty!" });
+        this.isLoading = false;
+        return false
       }
+      this.isLoading = true;
+      const isExist = await nameAvailable(this.spaceName);
+      if (isExist) {
+        this.$message({ iconClass: "none", message: "Congratulations! Name is available. Evoke transaction." });
+        const ret = await buyShip(this.spaceName).catch(
+          (e) => (this.isLoading = false)
+        );
+        console.log(ret, "after buy");
+        let msg = "";
+        // 购买成功
+        if (ret) {
+          this.isShowModal = false;
+          msg = "Purchase Successful！ Enter to Start！";
+        } else {
+          msg = "Purchase Cancelled!";
+        }
+        this.$message({ iconClass: "none", message: msg });
+      } else {
+        // 名字被占用加背景闪烁
+        this.runFlashing();
+        this.$message({ iconClass: "none", message: "Name already taken!" });
+      }
+      this.isLoading = false;
     },
     onScroll() {
       const scrtop =
