@@ -137,16 +137,16 @@
         <no-ssr>
           <swiper ref="spaceSwiper" :options="swiperOption">
             <swiper-slide
-              class="swiper-box flex-vc"
+              class="swiper-box flex-cc"
               v-for="(item, i) in spaceList"
               :key="i"
             >
               <img class="swiper-img" :src="item.img" />
             </swiper-slide>
           </swiper>
-          <div class="prev" slot="button-prev"></div>
-          <div class="next" slot="button-next"></div>
         </no-ssr>
+        <div class="prev" slot="button-prev"></div>
+        <div class="next" slot="button-next"></div>
       </div>
       <div class="props">
         <img :src="props" class="fadeout" />
