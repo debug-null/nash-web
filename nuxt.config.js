@@ -14,6 +14,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  env: {
+    baseUrl: 'http://localhost:4000/api'
+  },
   server: {
     port: 3000, // default: 3000
     host: '0.0.0.0', // default: localhost,
@@ -24,13 +27,16 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '@/styles/index.css',
     'swiper/css/swiper.css',
+    'nprogress/nprogress.css',
     '@/assets/fonts/font.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    { src: '@/plugins/vue-swiper.js', ssr: false }
+    '@/plugins/axios',
+    { src: '@/plugins/vue-swiper.js', ssr: false },
+    { src: '@/plugins/nprogress.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

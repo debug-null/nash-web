@@ -68,17 +68,19 @@
       <h-title style="margin-top: 94px;" class="title event-title" text="WHAT IS HAPPENING IN NASH METAVERSE ?" />
       <div class="event-list">
         <img class="v-line" :src="vline"  />
-        <swiper class="event-swiper" ref="event" :options="eventOptions">
-          <swiper-slide
-            class="event-slide"
-            v-for="(item, i) in events" :key="i"
-          >
-            <div class="event-item flex">
-              <div></div>
-              <p>{{item.text}}</p>
-            </div>
-          </swiper-slide>
-        </swiper>
+        <no-ssr>
+          <swiper class="event-swiper" ref="event" :options="eventOptions">
+            <swiper-slide
+              class="event-slide"
+              v-for="(item, i) in events" :key="i"
+            >
+              <div class="event-item flex">
+                <div></div>
+                <p>{{item.text}}</p>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </no-ssr>
       </div>
     </section>
     <!-- GAME PLAY -->
@@ -120,17 +122,19 @@
         text="SPACESHIP"
       />
       <div class="swiper-part">
-        <swiper ref="spaceSwiper" :options="swiperOption">
-          <swiper-slide
-            class="swiper-box flex-vc"
-            v-for="(item, i) in spaceList"
-            :key="i"
-          >
-            <img class="swiper-img" :src="item.img" />
-          </swiper-slide>
-        </swiper>
-        <div class="prev" slot="button-prev"></div>
-        <div class="next" slot="button-next"></div>
+        <no-ssr>
+          <swiper ref="spaceSwiper" :options="swiperOption">
+            <swiper-slide
+              class="swiper-box flex-vc"
+              v-for="(item, i) in spaceList"
+              :key="i"
+            >
+              <img class="swiper-img" :src="item.img" />
+            </swiper-slide>
+          </swiper>
+          <div class="prev" slot="button-prev"></div>
+          <div class="next" slot="button-next"></div>
+        </no-ssr>
       </div>
       <div class="props">
         <img :src="props" class="fadeout" />
@@ -201,10 +205,6 @@ export default {
   components: {
     HTitle,
     DownArr,
-  },
-  async asyncData({ app }) {
-    const ip = await app.$axios.$get('http://icanhazip.com')
-    return { ip }
   },
   data() {
     return {
@@ -447,12 +447,27 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.onScroll);
   },
+  // 服务端数据获取
+  async asyncData({ app }) {
+    // console.log(process.env.baseUrl, '环境变量')
+    const ip = await app.$axios.$get('http://icanhazip.com')
+    return { ip }
+  },
   mounted() {
-    this.bodyHeight = document.documentElement.clientHeight || window.innerHeight;
-    const scrtop = document.documentElement.scrollTop | document.body.scrollTop;
-    this.isShowArr = scrtop < 30
-    this.isShowNav = scrtop > 160
-    window.addEventListener("scroll", this.onScroll);
+    if (process.browser) { 
+      this.bodyHeight = document.documentElement.clientHeight || window.innerHeight;
+      const scrtop = document.documentElement.scrollTop | document.body.scrollTop;
+      this.isShowArr = scrtop < 30
+      this.isShowNav = scrtop > 160
+      window.addEventListener("scroll", this.onScroll);
+    }
+    // 请求示例   axios base配置请看  /plugins/axios.js文件
+    this.$axios.get('/testGet').then(res=>{
+      console.log(res)
+    })
+    this.$axios.post('/testPost').then(res=>{
+      console.log(res)
+    })
   },
 };
 </script>
