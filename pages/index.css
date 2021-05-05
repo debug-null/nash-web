@@ -512,13 +512,14 @@
     height: 500px;
   }
   .swiper-box.swiper-slide-active img {
-    transform: scale(2);
+    transform: scale(2) rotate(135deg);
   }
   .swiper-img {
     width: 300px;
     display: block;
     margin: 0 auto;
     transition: all .5s ease-in-out;
+    transform: rotate(135deg);
   }
   .prev,
   .next {
