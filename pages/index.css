@@ -9,7 +9,10 @@
   }
   .home {
     position: relative;
-    min-width: 700px;
+    background-image: url(../assets/imgs/index-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .buy-modal {
     position: fixed;
@@ -23,9 +26,9 @@
   .buy-modal-inner {
     position: fixed;
     z-index: 2001;
-    top: 360px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     width: 1259px;
     height: 266px;
     background-image: url(../assets/imgs/modal-bg.png);
@@ -169,8 +172,8 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 1077px;
-    background-image: url(../assets/imgs/index-1.png);
+    height: 1082px;
+    /* background-image: url(../assets/imgs/home_01.png); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -355,41 +358,34 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 1244px;
-    background-image: url(../assets/imgs/index-2.png);
+    height: 1250px;
+    /* background-image: url(../assets/imgs/home_02.png); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
   }
-  .event-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
-  .mask-down {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 305px;
-  }
   .event-list {
+    overflow: hidden;
     position: relative;
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 925px;
+    background-image: url(../assets/imgs/event-bg.png);
+    background-size: 1823px 925px;
+    background-repeat: no-repeat;
+    background-position: center top;
     margin: 0 auto;
-    margin-top: 575px;
+    margin-top: 80px;
   }
   .v-line {
     position: absolute;
-    top: -80px;
-    left: 10px;
+    top: 260px;
+    left: 510px;
   }
   .event-swiper {
     width: 100%;
     height: 300px;
+    margin-top: 350px;
+    padding-left: 500px;
   }
   .event-item {
     align-items: center;
@@ -425,8 +421,8 @@
   .game-part {
     overflow: hidden;
     width: 100%;
-    height: 2126px;
-    background-image: url(../assets/imgs/index-3.png);
+    height: 2119px;
+    /* background-image: url(../assets/imgs/home_03.png); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -443,14 +439,14 @@
     transform: translateZ(0);
   }
   .jump-img {
-    width: 1064px;
-    height: 693px;
+    width: 728px;
+    height: 567px;
     position: absolute;
     z-index: 1;
   }
   .nft-img {
-    width: 931px;
-    height: 600px;
+    width: 735px;
+    height: 462px;
     position: absolute;
     z-index: 1;
   }
@@ -463,7 +459,7 @@
     margin-top: 217px;
   }
   .ltr > img {
-    left: 212px;
+    left: 112px;
   }
   .ltr > div {
     right: 270px;
@@ -498,15 +494,15 @@
   .space-part {
     overflow: hidden;
     width: 100%;
-    height: 1624px;
-    background-image: url(../assets/imgs/index-4.png);
+    height: 1678px;
+    /* background-image: url(../assets/imgs/home_04.png); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
   }
   .swiper-part {
     position: relative;
-    height: 500px;
+    /* height: 500px; */
   }
   .swiper-part .swiper-container {
     height: 100%;
@@ -520,7 +516,6 @@
   }
   .swiper-img {
     width: 300px;
-    height: 160px;
     display: block;
     margin: 0 auto;
     transition: all .5s ease-in-out;
@@ -571,9 +566,10 @@
     margin-top: 70px;
   }
   .foot-part {
+    overflow: hidden;
     width: 100%;
-    height: 2291px;
-    background-image: url(../assets/imgs/index-5.png);
+    height: 938px;
+    /* background-image: url(../assets/imgs/home_05.png); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -625,7 +621,7 @@
     font-weight: 500;
     color: #ffffff;
     text-align: center;
-    margin-top: 424px;
+    margin-top: 100px;
     margin-bottom: 170px;
   }
   .brand-icon {
@@ -682,5 +678,5 @@
     color: #ffffff;
     text-align: center;
     margin: 0 auto;
-    margin-top: 107px;
+    margin-top: 200px;
   }

@@ -50,32 +50,27 @@
       </video> -->
       <div class="top-content">
         <div class="center-desc">
-          <h1>NASH MEATAVERSE</h1>
-          <p>MAKE YOUR UNIVERSE</p>
+          <h1>NASH METAVERSE</h1>
+          <p>CREATE YOUR METAVERSE</p>
           <div class="top-btns flex-hc">
             <div class="enter-btn"><span>ENTER</span></div>
             <div class="guest-btn"><span>GUEST</span></div>
           </div>
         </div>
         <div class="what-is">
-          <h1>WHAT IS NASH METAVERSE ?</h1>
-          <p>
-            NASH METAVERSE is a blockchain Metaverse MMO game, an evolving game
-            universe.
-          </p>
-          <p>
-            With its first game NASH UNIVERSE, players can obtain spaceships,
-            gather NASHICAL to
-          </p>
-          <p>upgrade spaceships and JUMP in space to win resources.</p>
-          <p>Enter Nash Universe, create the most valuable collection.</p>
+          <h1>WHAT IS NASH METAVERSE?</h1>
+          <p>The Nash Metaverse is a Cross-Chain Decentralized Metaverse.</p>
+          <p>Choose your own path, explore and create an infinitely evolving space Metaverse.</p>
+          <p>Become a Captain, to Experience the Exciting Competition, and Build your own Economic and Political System</p>
+          <p>Become a Governor, Establish your own Planet Base, and Create your own Applications and Services in the Nash Metaverse</p>
+          <p>Earn by Participating in the Game and Contributing to the Ecosystem.</p>
         </div>
       </div>
-      <img class="mask-up" :src="maskUp" />
+      <!-- <img class="mask-up" :src="maskUp" /> -->
     </section>
     <!-- 事件部分 -->
     <section class="event-part">
-      <img class="mask-down" :src="maskDown" />
+      <!-- <img class="mask-down" :src="maskDown" /> -->
       <h-title
         style="margin-top: 94px"
         class="title event-title"
@@ -105,28 +100,18 @@
       <div class="game-play ltr">
         <img class="jump-img" :src="jump" />
         <div class="">
-          <h1>Jump</h1>
-          <p>
-            Player JUMPs to approach the planet with resources
-            (NASHICAL/crypto/NFT) spotted in Nash Universe.
-          </p>
-          <p>
-            Make sure to park the spaceship within its radar range. Once the
-            spaceship stops flying, it will begin automatically to gather
-            resources on the planet.
-          </p>
-          <p>
-            *JUMP, i.e. time and location changes cost NASHICAL. *In Nash
-            Universe, a JUMP costs up to only 2 transactions. Less GAS fees.
-          </p>
+          <h1>EXPLORE</h1>
+          <p>Obtain your NASH spaceship NFT.</p>
+          <p>Compete, Upgrade, Build, Create, and join Alliance.</p>
+          <p>Earn income, Grow and Evolve with the Nash Metaverse.</p>
         </div>
       </div>
       <div class="game-play rtl">
         <div class="">
-          <h1>Trade</h1>
-          <p>Design your own spaceships and trade with other players.</p>
-          <p>Build your exclusive fleet.</p>
-          <p>Cross-blockchain transfers of any Nash Metaverse NFTs.</p>
+          <h1>CREATE</h1>
+          <p>Open and Transparent On-Chain Data to All Players.</p>
+          <p>Own and Control your Personalized NASH Metaverse NFTs.</p>
+          <p>Use NASH editor to Create Highly Interactive Applications and Games.</p>
         </div>
         <img class="nft-img" :src="nft" />
       </div>
@@ -161,7 +146,7 @@
       </div>
     </section>
     <section class="foot-part">
-      <el-row type="flex" justify="center">
+      <!-- <el-row type="flex" justify="center">
         <el-col :span="20">
           <h-title text="PARTENERS" />
           <div class="flex-hb part-list">
@@ -172,7 +157,7 @@
             ></div>
           </div>
         </el-col>
-      </el-row>
+      </el-row> -->
       <h3 class="follow fadeout">FOLLOW NASH METAVERSE</h3>
       <div class="flex-hc fadeout">
         <div
@@ -186,7 +171,7 @@
           <div v-if="item.isActive" class="brand-desc">{{ item.title }}</div>
         </div>
       </div>
-      <el-row class="bottom-menu fadeout">
+      <!-- <el-row class="bottom-menu fadeout">
         <el-col
           :xl="6"
           :lg="6"
@@ -205,7 +190,7 @@
             </ul>
           </div>
         </el-col>
-      </el-row>
+      </el-row> -->
       <div class="game-info">
         <p>NASH METAVERSE is a blockchain meta-universe MMO game.</p>
         <p>
@@ -256,15 +241,15 @@ export default {
         { text: "EVENTS", link: "" },
         { text: "SPACESHIP", link: "" },
         { text: "GAMEPLAY", link: "" },
-        { text: "PARTENERS", link: "" },
+        // { text: "PARTENERS", link: "" },
       ],
       // 事件列表
       events: [
-        { text: "April. 15.5000 spaceships" },
-        { text: "April. 13.5000 spaceships" },
-        { text: "April. 14.5000 spaceships" },
-        { text: "April. 12.5000 spaceships" },
-        { text: "April. 10.5000 spaceships" },
+        { text: "April 15th - 5000 spaceships launched." },
+        { text: "May 05th - NASH Metaverse First Playable." },
+        { text: "COMING SOON - Competitive Mode." },
+        { text: "COMING SOON - Planet NFT" },
+        { text: "COMING SOON - Open Editor to Players" },
       ],
       eventOptions: {
         direction: "vertical",
@@ -294,11 +279,9 @@ export default {
       },
       // 飞船轮播
       spaceList: [
-        { img: require("@/assets/imgs/test1.png") },
-        { img: require("@/assets/imgs/test1.png") },
-        { img: require("@/assets/imgs/test1.png") },
-        { img: require("@/assets/imgs/test1.png") },
-        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/space-1.png") },
+        { img: require("@/assets/imgs/space-2.png") },
+        { img: require("@/assets/imgs/space-3.png") },
       ],
       // 合作伙伴
       parteners: [
@@ -423,7 +406,7 @@ export default {
       return require("@/assets/imgs/prop-icon.png");
     },
     jump: function () {
-      return require("@/assets/imgs/jump.png");
+      return require("@/assets/imgs/jump11.png");
     },
     nft: function () {
       return require("@/assets/imgs/nft.png");
