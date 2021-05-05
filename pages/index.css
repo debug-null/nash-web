@@ -598,9 +598,9 @@
       height: 180px;
       margin-bottom: 46px;
     }
-    .jump-img, .nft-img {
+    /* .jump-img, .nft-img {
       transform: scale(.7);
-    }
+    } */
     .rtl > img {
       right: 0;
     }
