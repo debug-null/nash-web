@@ -25,7 +25,8 @@ export default {
   router: {
     scrollBehavior (to, from, savedPosition) {
       return { x: 0, y: 0 }
-    }
+    },
+    middleware: ['device']
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
