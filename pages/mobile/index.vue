@@ -39,15 +39,17 @@
           WHAT IS HAPPENING IN NASH METAVERSE ?
         </div>
         <div class="events-box">
-          <swiper class="event-list" :options="eventOptions">
-            <swiper-slide
-              class="event-item flex"
-              v-for="(item, i) in events"
-              :key="i"
-            >
-              <p>{{ item.text }}</p>
-            </swiper-slide>
-          </swiper>
+          <no-ssr>
+            <swiper class="event-list" :options="eventOptions">
+              <swiper-slide
+                class="event-item flex"
+                v-for="(item, i) in events"
+                :key="i"
+              >
+                <p>{{ item.text }}</p>
+              </swiper-slide>
+            </swiper>
+          </no-ssr>
         </div>
       </div>
 
@@ -97,19 +99,22 @@
         </div>
         <div class="space-container">
           <div class="space-list-box">
-            <swiper
-              :options="spaceSwiperOption"
-              class="swiper-space-box"
-              ref="spaceSwiper"
-            >
-              <swiper-slide
-                class="swiper-space-item"
-                v-for="(item, i) in spaceList"
-                :key="i"
+            <no-ssr>
+              <swiper
+                :options="spaceSwiperOption"
+                class="swiper-space-box"
+                ref="spaceSwiper"
               >
-                <img class="swiper-img" :src="item.img" />
-              </swiper-slide>
-            </swiper>
+                <swiper-slide
+                  class="swiper-space-item"
+                  v-for="(item, i) in spaceList"
+                  :key="i"
+                >
+                  <img class="swiper-img" :src="item.img" />
+                </swiper-slide>
+              </swiper>
+            </no-ssr>
+
             <div class="prev btn" slot="button-prev"></div>
             <div class="next btn" slot="button-next"></div>
           </div>
@@ -185,8 +190,8 @@ export default {
         { img: "/images/mobile/board-3.png" }
       ],
       spaceSwiperOption: {
-        observer:true,
-        observeParents:true,
+        observer: true,
+        observeParents: true,
         loop: true,
         speed: 1000,
         slidesPerView: 1,
@@ -202,7 +207,7 @@ export default {
     enter() {
       let media = this.$refs.media;
       let poster = this.$refs.postContainer;
-      poster.style.background = 'initial'
+      poster.style.background = "initial";
       media.play();
     },
     buy() {

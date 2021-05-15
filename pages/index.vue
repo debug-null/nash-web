@@ -489,7 +489,7 @@ export default {
         this.isShowModal = false;
         window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn', '_blank')
         return false
-      } 
+      }
       // 名字empty
       if (!this.spaceName) {
         this.runFlashing();
@@ -558,8 +558,8 @@ export default {
   // 服务端数据获取
   async asyncData({ app }) {
     // console.log(process.env.baseUrl, '环境变量')
-    const ip = await app.$axios.$get("http://icanhazip.com");
-    return { ip };
+    // const ip = await app.$axios.$get("http://icanhazip.com");
+    // return { ip };
   },
   mounted() {
     if (process.browser) {

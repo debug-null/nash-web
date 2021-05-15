@@ -1,8 +1,6 @@
 import { deviceType, isMobile, isIOS } from '~/utils/deviceType.js'
 export default function (context) {
-  const isServer = process.server
-    ? context.req.headers['user-agent']
-    : navigator.userAgent
+  const isServer = process.server;
   if (isServer) {
     console.log(
       '🚀 ~ file: device.js ~ line 6 ~ function ~ isServer===服务端',
