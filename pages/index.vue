@@ -15,7 +15,7 @@
       <ul class="nav-right flex-hbc">
         <li class="flex-hbc" @click="handleLogin">
           <img v-if="!addressNow" :src="login" />
-          <span> {{ addressNow ? addressNow : 'LOGIN' }}</span>
+          <span> {{ addressNow ? addressNow : "LOGIN" }}</span>
         </li>
         <li class="flex-hbc">
           <img :src="lang" />
@@ -37,7 +37,7 @@
           <input type="text" v-model="spaceName" placeholder="Enter NAME" />
         </div>
         <div v-loading="isLoading" class="check-btn" @click="handleBuy">
-          {{ isConnectWallet ? 'MINT SHIP' : 'install wallet' }}
+          {{ isConnectWallet ? "MINT SHIP" : "install wallet" }}
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@
       />
       <div class="event-list">
         <img class="v-line" :src="vline" />
-        <no-ssr>
+        <client-only>
           <swiper class="event-swiper" ref="event" :options="eventOptions">
             <swiper-slide
               class="event-slide"
@@ -96,7 +96,7 @@
               </div>
             </swiper-slide>
           </swiper>
-        </no-ssr>
+        </client-only>
       </div>
     </section>
     <!-- GAME PLAY -->
@@ -138,7 +138,7 @@
         text="SPACESHIP"
       />
       <div class="swiper-part">
-        <no-ssr>
+        <client-only>
           <swiper ref="spaceSwiper" :options="swiperOption">
             <swiper-slide
               class="swiper-box flex-cc"
@@ -148,7 +148,7 @@
               <img class="swiper-img" :src="item.img" />
             </swiper-slide>
           </swiper>
-        </no-ssr>
+        </client-only>
         <div class="prev" slot="button-prev"></div>
         <div class="next" slot="button-next"></div>
       </div>
@@ -232,17 +232,17 @@ export default {
       script: [
         { src: "./js/web3.min.js" },
         { src: "./js/ShipABI.js" },
-        { src: "./js/buy.js" },
-      ],
+        { src: "./js/buy.js" }
+      ]
     };
   },
   components: {
     HTitle,
-    DownArr,
+    DownArr
   },
   data() {
     return {
-      addressNow: '',
+      addressNow: "",
       isConnectWallet: false,
       startFlashing: false, // 名字是否被占用
       isShowModal: false,
@@ -256,7 +256,7 @@ export default {
         { text: "EVENTS", link: "" },
         { text: "SPACESHIP", link: "" },
         { text: "GAMEPLAY", link: "" },
-        { text: "PARTENERS", link: "" },
+        { text: "PARTENERS", link: "" }
       ],
       // 事件列表
       events: [
@@ -264,18 +264,18 @@ export default {
         { text: "April. 13.5000 spaceships" },
         { text: "April. 14.5000 spaceships" },
         { text: "April. 12.5000 spaceships" },
-        { text: "April. 10.5000 spaceships" },
+        { text: "April. 10.5000 spaceships" }
       ],
       eventOptions: {
         direction: "vertical",
         loop: true,
         autoplay: {
           delay: 1000,
-          disableOnInteraction: false,
+          disableOnInteraction: false
         },
         speed: 1000,
         slidesPerView: 5,
-        centeredSlides: true,
+        centeredSlides: true
       },
       swiperOption: {
         loop: true,
@@ -289,8 +289,8 @@ export default {
         navigation: {
           nextEl: ".next",
           prevEl: ".prev",
-          disabledClass: "my-button-disabled",
-        },
+          disabledClass: "my-button-disabled"
+        }
       },
       // 飞船轮播
       spaceList: [
@@ -298,7 +298,7 @@ export default {
         { img: require("@/assets/imgs/test1.png") },
         { img: require("@/assets/imgs/test1.png") },
         { img: require("@/assets/imgs/test1.png") },
-        { img: require("@/assets/imgs/test1.png") },
+        { img: require("@/assets/imgs/test1.png") }
       ],
       // 合作伙伴
       parteners: [
@@ -309,7 +309,7 @@ export default {
         { img: "", link: "" },
         { img: "", link: "" },
         { img: "", link: "" },
-        { img: "", link: "" },
+        { img: "", link: "" }
       ],
       // 底部菜单配置
       menus: [
@@ -320,8 +320,8 @@ export default {
             { text: "Download the Game", link: "" },
             { text: "Add Game Time", link: "" },
             { text: "System Requirements", link: "" },
-            { text: "Starter Guide for Beginners", link: "" },
-          ],
+            { text: "Starter Guide for Beginners", link: "" }
+          ]
         },
         {
           type: "CURRENT PLAYERS",
@@ -334,8 +334,8 @@ export default {
             { text: "Developers", link: "" },
             { text: "Recruit a Friend", link: "" },
             { text: "Return to NASH", link: "" },
-            { text: "Partnership Program", link: "" },
-          ],
+            { text: "Partnership Program", link: "" }
+          ]
         },
         {
           type: "NASH UNIVERSE",
@@ -346,8 +346,8 @@ export default {
             { text: "Nash Fanfest", link: "" },
             { text: "Nash Merchandise", link: "" },
             { text: "Nash Ship Models", link: "" },
-            { text: "Project Discovery", link: "" },
-          ],
+            { text: "Project Discovery", link: "" }
+          ]
         },
         {
           type: "SITE INFO",
@@ -356,93 +356,95 @@ export default {
             { text: "Terms of Service", link: "" },
             { text: "Privacy Policy", link: "" },
             { text: "Contact Us", link: "" },
-            { text: "RSS Feed", link: "" },
-          ],
-        },
+            { text: "RSS Feed", link: "" }
+          ]
+        }
       ],
       brands: [
         {
           icon: require("@/assets/imgs/facebook-i.png"),
           title: "facebook",
           isActive: false,
-          link: "",
+          link: ""
         },
         {
           icon: require("@/assets/imgs/twitter-i.png"),
           title: "twitter",
           isActive: false,
-          link: "",
+          link: ""
         },
         {
           icon: require("@/assets/imgs/youtube-i.png"),
           title: "youtube",
           isActive: false,
-          link: "",
+          link: ""
         },
         {
           icon: require("@/assets/imgs/twitch-i.png"),
           title: "twitch",
           isActive: false,
-          link: "",
+          link: ""
         },
         {
           icon: require("@/assets/imgs/instagram-i.png"),
           title: "instagram",
           isActive: false,
-          link: "",
+          link: ""
         },
         {
           icon: require("@/assets/imgs/vk-i.png"),
           title: "vk",
           isActive: false,
-          link: "",
-        },
-      ],
+          link: ""
+        }
+      ]
     };
   },
   computed: {
-    login: function () {
+    login: function() {
       return require("@/assets/imgs/login-i.png");
     },
-    lang: function () {
+    lang: function() {
       return require("@/assets/imgs/lang-i.png");
     },
-    logo: function () {
+    logo: function() {
       return require("@/assets/imgs/logo.png");
     },
-    logo: function () {
+    logo: function() {
       return require("@/assets/imgs/logo.png");
     },
-    logoI: function () {
+    logoI: function() {
       return require("@/assets/imgs/logo-i.png");
     },
-    buy: function () {
+    buy: function() {
       return require("@/assets/imgs/buy-i.png");
     },
-    props: function () {
+    props: function() {
       return require("@/assets/imgs/prop-icon.png");
     },
-    jump: function () {
+    jump: function() {
       return require("@/assets/imgs/jump.png");
     },
-    nft: function () {
+    nft: function() {
       return require("@/assets/imgs/nft.png");
     },
-    vline: function () {
+    vline: function() {
       return require("@/assets/imgs/v-line.png");
     },
-    maskUp: function () {
+    maskUp: function() {
       return require("@/assets/imgs/mask-up.png");
     },
-    maskDown: function () {
+    maskDown: function() {
       return require("@/assets/imgs/mask-down.png");
-    },
+    }
   },
   methods: {
     handleLogin() {
-      doLogin()
+      doLogin();
       if (addressNow) {
-        this.addressNow = `${addressNow.substr(0,6)}......${addressNow.substr(-4)}`
+        this.addressNow = `${addressNow.substr(0, 6)}......${addressNow.substr(
+          -4
+        )}`;
       }
     },
     handelEnterBrand(index) {
@@ -465,21 +467,21 @@ export default {
     },
     // 打开/关闭购买弹框
     toggleBuy() {
-      this.spaceName = ''
+      this.spaceName = "";
       // 钱包是否连接成功
-      this.isConnectWallet = !!ShipContract
+      this.isConnectWallet = !!ShipContract;
       this.isShowModal = !this.isShowModal;
     },
     runFlashing() {
       this.startFlashing = true;
       setTimeout(() => {
         this.startFlashing = false;
-      }, 4000)
+      }, 4000);
     },
     // 购买
     async handleBuy() {
       if (this.isLoading) {
-        return false
+        return false;
       }
       // ①根据ShipContract是否是undefined来判断是否连接钱包成功。如果不成功则显示提示连接钱包的按钮而非检查名称
       // ②直接将检查名称checkName变为mintShip
@@ -487,22 +489,28 @@ export default {
       // 没有安装钱包插件
       if (!this.isConnectWallet) {
         this.isShowModal = false;
-        window.open('https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn', '_blank')
-        return false
+        window.open(
+          "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",
+          "_blank"
+        );
+        return false;
       }
       // 名字empty
       if (!this.spaceName) {
         this.runFlashing();
         this.$message({ iconClass: "none", message: "Name empty!" });
         this.isLoading = false;
-        return false
+        return false;
       }
       this.isLoading = true;
       const isExist = await nameAvailable(this.spaceName);
       if (isExist) {
-        this.$message({ iconClass: "none", message: "Congratulations! Name is available. Evoke transaction." });
+        this.$message({
+          iconClass: "none",
+          message: "Congratulations! Name is available. Evoke transaction."
+        });
         const ret = await buyShip(this.spaceName).catch(
-          (e) => (this.isLoading = false)
+          e => (this.isLoading = false)
         );
         console.log(ret, "after buy");
         let msg = "";
@@ -527,13 +535,13 @@ export default {
       this.isShowArr = scrtop < 30;
       this.isShowNav = scrtop > 160;
 
-      Array.from(document.querySelectorAll(".fadeout")).map((o) => {
+      Array.from(document.querySelectorAll(".fadeout")).map(o => {
         const top = o.getBoundingClientRect().top;
         if (top < this.bodyHeight && !o.classList.contains("fadein")) {
           o.classList.add("fadein");
         }
       });
-      Array.from(document.querySelectorAll(".h-title")).map((o) => {
+      Array.from(document.querySelectorAll(".h-title")).map(o => {
         const top = o.getBoundingClientRect().top;
         if (top < this.bodyHeight) {
           const content = o.querySelector(".content");
@@ -544,13 +552,13 @@ export default {
             img.classList.add("line-enter");
         }
       });
-      Array.from(document.querySelectorAll(".game-play")).map((o) => {
+      Array.from(document.querySelectorAll(".game-play")).map(o => {
         const top = o.getBoundingClientRect().top;
         if (top < this.bodyHeight) {
           !o.classList.contains("fade-right") && o.classList.add("fade-right");
         }
       });
-    },
+    }
   },
   destroyed() {
     window.removeEventListener("scroll", this.onScroll);
@@ -571,8 +579,8 @@ export default {
       this.isShowNav = scrtop > 160;
       window.addEventListener("scroll", this.onScroll);
       setTimeout(() => {
-        this.handleLogin()
-      }, 2000)
+        this.handleLogin();
+      }, 2000);
     }
     // 请求示例   axios base配置请看  /plugins/axios.js文件
     // this.$axios.get("/testGet").then((res) => {
@@ -581,7 +589,7 @@ export default {
     // this.$axios.post("/testPost").then((res) => {
     //   console.log(res);
     // });
-  },
+  }
 };
 </script>
 <style scoped>

@@ -25,8 +25,7 @@ export default {
   router: {
     scrollBehavior (to, from, savedPosition) {
       return { x: 0, y: 0 }
-    },
-    middleware: ['device']
+    }
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -41,6 +40,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/axios',
+    '@/plugins/device',
     { src: '@/plugins/vue-swiper.js', ssr: false },
     { src: '@/plugins/nprogress.js', ssr: false },
   ],

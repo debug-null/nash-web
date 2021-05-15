@@ -24,7 +24,6 @@
         </div>
 
         <div class="btn-box">
-          <div class="tip">Purchase Successful！ Enter to Start！</div>
           <div class="btn yellow" @click="enter">
             ENTER
           </div>
@@ -39,7 +38,7 @@
           WHAT IS HAPPENING IN NASH METAVERSE ?
         </div>
         <div class="events-box">
-          <no-ssr>
+          <client-only>
             <swiper class="event-list" :options="eventOptions">
               <swiper-slide
                 class="event-item flex"
@@ -49,7 +48,7 @@
                 <p>{{ item.text }}</p>
               </swiper-slide>
             </swiper>
-          </no-ssr>
+          </client-only>
         </div>
       </div>
 
@@ -99,7 +98,7 @@
         </div>
         <div class="space-container">
           <div class="space-list-box">
-            <no-ssr>
+            <client-only>
               <swiper
                 :options="spaceSwiperOption"
                 class="swiper-space-box"
@@ -113,7 +112,7 @@
                   <img class="swiper-img" :src="item.img" />
                 </swiper-slide>
               </swiper>
-            </no-ssr>
+            </client-only>
 
             <div class="prev btn" slot="button-prev"></div>
             <div class="next btn" slot="button-next"></div>
