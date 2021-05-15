@@ -1,5 +1,11 @@
 <template>
-  <div class="poster-container">
+  <div class="poster-container" ref="postContainer">
+    <video
+      id="media"
+      src="/images/mobile/start.m4v"
+      preload="metadata"
+      ref="media"
+    ></video>
     <a class="logo" href="./"></a>
     <div class="top">
       <h1>NASH METAVERSE</h1>
@@ -118,8 +124,6 @@
               </a>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -167,10 +171,10 @@ export default {
         direction: "vertical",
         loop: true,
         autoplay: {
-          delay: 1000,
+          delay: 0,
           disableOnInteraction: false
         },
-        speed: 3000 * 333,
+        speed: 3000,
         slidesPerView: 5,
         centeredSlides: true
       },
@@ -181,12 +185,10 @@ export default {
         { img: "/images/mobile/board-3.png" }
       ],
       spaceSwiperOption: {
+        observer:true,
+        observeParents:true,
         loop: true,
         speed: 1000,
-        // autoplay: {
-        //   delay: 5000,
-        //   disableOnInteraction: false
-        // },
         slidesPerView: 1,
         centeredSlides: true,
         navigation: {
@@ -198,7 +200,10 @@ export default {
   },
   methods: {
     enter() {
-      alert("enter");
+      let media = this.$refs.media;
+      let poster = this.$refs.postContainer;
+      poster.style.background = 'initial'
+      media.play();
     },
     buy() {
       alert("buy");

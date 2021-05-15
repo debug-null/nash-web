@@ -6,6 +6,18 @@ $contentWidth: 31.875rem;
   background: url("/images/mobile/bg.png") no-repeat center center;
   background-size: cover;
   overflow: hidden;
+  user-select: none;
+  #media{
+    position: fixed;//视频定位方式设为固定
+    right: 0;
+    bottom: 0;//视频位置
+    min-width: 100%;
+    min-height: 100%; //不会因视频尺寸造成页面需要滚动
+    width: auto;
+    height: auto; //尺寸保持原视频大小
+    z-index: -100; //z轴定位，小于0即可
+    -webkit-filter: grayscale(20%);//添加灰度蒙版，如果设定为100%则视频显示为黑白
+  }
   .logo {
     display: block;
     width: 6.875rem;
@@ -225,9 +237,11 @@ $contentWidth: 31.875rem;
           z-index: 10;
           .swiper-space-box {
             width: 100%;
-            height: 25rem;
             text-align: center;
             overflow: initial !important;
+            .swiper-space-item{
+
+            }
             .swiper-img {
               max-width: 34.375rem;
               height: 18.75rem;
