@@ -265,6 +265,16 @@ export default {
 }
 </style>
 <style lang="scss">
+// 预加载图片
+ body{
+ background-image:
+ url("/images/web/footer-occupation.png"),
+ url("/images/web/footer-bg.png"),
+ url("/images/web/events.png"),
+ url("/images/web/events_line.png"),
+ url('/images/web/space_station.png');
+background-size:0 0;
+}
 .public-title {
   font-size: 3.5rem;
   color: #fff;
