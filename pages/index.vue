@@ -232,7 +232,9 @@ export default {
       script: [
         { src: "./js/web3.min.js" },
         { src: "./js/ShipABI.js" },
-        { src: "./js/buy.js" }
+        { src: "./js/buy.js" },
+        { src: "./js/rem.js" }
+
       ]
     };
   },

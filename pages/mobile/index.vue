@@ -4,6 +4,7 @@
       id="media"
       src="/images/mobile/start.m4v"
       preload="metadata"
+      loop
       ref="media"
     ></video>
     <a class="logo" href="./"></a>
@@ -123,29 +124,36 @@
               <img src="/images/mobile/attr-img.png" alt="" />
             </div>
             <div class="social">
-              <a v-for="(item, i) in shareLinks" :key="i" :href="item.link">
-                <img :src="item.img" alt="" />
+              <a v-for="(item, i) in shareLinks" :key="i" :href="item.link" target="_blank">
+                <img :src="item.img" :alt="item.img" />
               </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="footer"></div>
+    <ShipName v-if="shipNameVisible" @mask="shipNameVisible = false"/>
   </div>
 </template>
 
 <script>
+import ShipName from "@/components/mobile/shipName";
 export default {
   name: "PosterIndex",
   head() {
     return {
-      script: [{ src: "../../js/rem.js" }]
+      script: [{ src: "/js/rem.js" },
+        { src: "/js/web3.min.js" },
+        { src: "/js/ShipABI.js" },
+        { src: "/js/buy.js" }
+      ]
     };
   },
+  components: { ShipName },
   data() {
     return {
+      shipNameVisible: false,
       events: [
         { text: "April. 15. 5000 spaceships launched" },
         { text: "May 15th - NASH Metaverse First Playable" },
@@ -155,19 +163,19 @@ export default {
       ],
       shareLinks: [
         {
-          link: "./",
+          link: "https://discord.gg/weX45CNp",
           img: "/images/mobile/discord.png"
         },
         {
-          link: "./",
+          link: "https://t.me/joinchat/o9TnDUaHbYI4MjNl",
           img: "/images/mobile/telegram.png"
         },
         {
-          link: "./",
+          link: "https://twitter.com/nashmetaverse",
           img: "/images/mobile/twitter.png"
         },
         {
-          link: "./",
+          link: "https://nashmetaverse.medium.com/",
           img: "/images/mobile/m.png"
         }
       ],
@@ -210,11 +218,27 @@ export default {
       media.play();
     },
     buy() {
-      alert("buy");
+      this.shipNameVisible = true;
     }
   }
 };
 </script>
+<style >
+ body{
+ background-image:
+ url("/images/mobile/bg.png"),
+ url("/images/mobile/logo.png"),
+ url("/images/mobile/events.png"),
+ url("/images/mobile/events_line.png"),
+ url("/images/mobile/module-three_explore.png"),
+ url('/images/mobile/module-three_create.png')
+ url('/images/mobile/space_station.png')
+ url("/images/mobile/ship-name_bg.png");
+background-size:0 0;
+}
+</style>
+
 <style scoped lang="scss">
 @import "~assets/scss/mobile/index.scss";
 </style>
+

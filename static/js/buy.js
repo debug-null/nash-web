@@ -4,7 +4,9 @@ var addressNow;
 var setting = {}
 var networkId;
 // 初始化钱包连接
+
 doLogin()
+
 function doLogin() {
     try {
         ethereum.request({ method: 'eth_requestAccounts' }).then((res) => {
@@ -21,6 +23,7 @@ function doLogin() {
 
 // 通过钱包来初始化区块链链接
 function getNetwork() {
+  console.log('getNetwork========',ShipContract);
     if (ShipContract == undefined) {
         networkId = parseInt(ethereum.chainId);
         switchNetwork(networkId)
@@ -31,7 +34,7 @@ function getNetwork() {
 }
 //根据网络切换合约地址
 function switchNetwork(networkId) {
-    console.log('networkId:', networkId);
+    console.log("🚀 ~ file: buy.js ~ line 38 ~ switchNetwork ~ networkId", networkId)
     switch (networkId) {
         case 42://kovan
             NAPAddress = "0x0D54464EC49818BDaf6f42f465025A06CbD68ffD";
@@ -58,6 +61,7 @@ function switchNetwork(networkId) {
 // 生成合约对象实例
 async function initContractInstance(networkId) {
     ShipContract = new web3js.eth.Contract(Ship_ABI, ShipAddress);
+    console.log("🚀 ~ file: buy.js ~ line 65 ~ initContractInstance ~ ShipContract", ShipContract)
 }
 
 // 检查名称可用性
