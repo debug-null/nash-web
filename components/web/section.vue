@@ -206,6 +206,7 @@ section {
         height: 5rem;
         line-height: 5rem;
         font-family: ali-bold;
+        cursor: pointer;
         &.yellow {
           color: #000;
           background-color: #ffd522;

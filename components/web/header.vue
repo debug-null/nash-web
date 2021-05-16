@@ -17,8 +17,8 @@
 
     <div class="nav-right">
       <div class="login item">
-        <img src="/images/web/icon-person.png" alt="person.png" />
-        <div class="text">LOG IN</div>
+        <img src="/images/web/icon-person.png" alt="person.png" v-if="!addressNow"/>
+        <div class="text"> {{addressNow ? addressNow : 'LOG IN'}}</div>
       </div>
       <div class="language item">
         <img src="/images/web/icon-language.png" alt="language" />
@@ -33,10 +33,28 @@ export default {
   name: "Header",
   components: {},
   data() {
-    return {};
+    return {
+      addressNow: ''
+    };
   },
   computed: {},
-  methods: {}
+  mounted(){
+    if (process.browser) {
+       setTimeout(() => {
+        this.handleLogin();
+      }, 2000);
+    }
+  },
+  methods: {
+     handleLogin() {
+      doLogin();
+      if (addressNow) {
+        this.addressNow = `${addressNow.substr(0, 6)}......${addressNow.substr(
+          -4
+        )}`;
+      }
+    },
+  }
 };
 </script>
 <style lang="scss" scoped>

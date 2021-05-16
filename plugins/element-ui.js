@@ -1,5 +1,12 @@
 import Vue from 'vue'
-import Element from 'element-ui'
+import { Message, Loading } from 'element-ui'
+// @ts-ignore
 import locale from 'element-ui/lib/locale/lang/en'
+Vue.prototype.$message = Message
 
-Vue.use(Element, { locale })
+Vue.prototype.$loading = Loading.service
+
+export default () => {
+  Vue.use(Loading.directive)
+  // Vue.use(Button, { locale });
+}
