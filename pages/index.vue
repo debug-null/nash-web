@@ -286,8 +286,8 @@ background-size:0 0;
     position: absolute;
     top: 0;
     left: 0;
-    width: 117px;
-    height: 6px;
+    width: 7.3125rem;
+    height: .375rem;
     background: url("/images/web/title-line.png") no-repeat center center;
   }
 }
