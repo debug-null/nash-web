@@ -342,7 +342,7 @@ section {
     }
 
     .space-container {
-      width: 120rem;
+      width: 100%;
       height: 73.5625rem;
       background: url("/images/web/space_station.png") no-repeat center center;
       background-size: cover;
