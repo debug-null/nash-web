@@ -1,3 +1,4 @@
+const BASE_PATH = '/gw';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -23,6 +24,7 @@ export default {
     timing: false
   },
   router: {
+    base: BASE_PATH,
     scrollBehavior (to, from, savedPosition) {
       return { x: 0, y: 0 }
     }

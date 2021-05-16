@@ -125,7 +125,7 @@ export default {
     transform: translate(-50%, -50%);
     width: 39.0625rem;
     height: 21rem;
-    background: url("/images/mobile/ship-name_bg.png") no-repeat center center;
+    background: url("~static/images/mobile/ship-name_bg.png") no-repeat center center;
     background-size: cover;
     color: #fff;
     .title {

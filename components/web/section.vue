@@ -245,7 +245,7 @@ section {
       width: 113.9375rem;
       height: 57.8125rem;
       margin: 0 auto;
-      background: url("/images/web/events.png") no-repeat center center;
+      background: url("~static/images/web/events.png") no-repeat center center;
       background-size: cover;
       .event-list {
         width: 71.25rem;
@@ -258,10 +258,10 @@ section {
           content: "";
           position: absolute;
           top: 0;
-          left: 0.2rem;
+          left: 0.3rem;
           width: 100%;
           height: 100%;
-          background: url("/images/web/events_line.png") no-repeat left center;
+          background: url("~static/images/web/events_line.png") no-repeat left center;
         }
 
         .event-item {

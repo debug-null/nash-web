@@ -136,7 +136,7 @@ export default {
   min-width: 750px;
   width: 100%;
   height: 100%;
-  background: url("/images/web/bg.png") no-repeat center center;
+  background: url("~static/images/web/bg.png") no-repeat center center;
   background-size: cover;
   color: #fff;
   user-select: none;
@@ -268,11 +268,11 @@ export default {
 // 预加载图片
  body{
  background-image:
- url("/images/web/footer-occupation.png"),
- url("/images/web/footer-bg.png"),
- url("/images/web/events.png"),
- url("/images/web/events_line.png"),
- url('/images/web/space_station.png');
+ url("~static/images/web/footer-occupation.png"),
+ url("~static/images/web/footer-bg.png"),
+ url("~static/images/web/events.png"),
+ url("~static/images/web/events_line.png"),
+ url('~static/images/web/space_station.png');
 background-size:0 0;
 }
 .public-title {
@@ -288,7 +288,7 @@ background-size:0 0;
     left: 0;
     width: 7.3125rem;
     height: .375rem;
-    background: url("/images/web/title-line.png") no-repeat center center;
+    background: url("~static/images/web/title-line.png") no-repeat center center;
   }
 }
 

@@ -2,14 +2,15 @@ $contentWidth: 31.875rem;
 .poster-container {
   width: 100%;
   height: 100%;
-  background: url("/images/mobile/bg.png") no-repeat center center;
+  background: url("~static/images/mobile/bg.png") no-repeat center center;
   background-size: cover;
   overflow: hidden;
   user-select: none;
   #media{
     position: fixed;//视频定位方式设为固定
-    right: 0;
-    bottom: 0;//视频位置
+    left: 50%;
+    bottom: 50%;//视频位置
+    transform: translate(-50%,50%);
     min-width: 100%;
     min-height: 100%; //不会因视频尺寸造成页面需要滚动
     width: auto;
@@ -21,7 +22,7 @@ $contentWidth: 31.875rem;
     display: block;
     width: 6.875rem;
     height: 6.125rem;
-    background: url("/images/mobile/logo.png") no-repeat center center;
+    background: url("~static/images/mobile/logo.png") no-repeat center center;
     background-size: cover;
     margin: 3.4375rem 0 0 3.4375rem;
   }
@@ -93,7 +94,7 @@ $contentWidth: 31.875rem;
         position: relative;
         width: 41.25rem;
         height: 25.25rem;
-        background: url("/images/mobile/events.png") no-repeat center center;
+        background: url("~static/images/mobile/events.png") no-repeat center center;
         background-size: cover;
         .event-list {
           width: 25rem;
@@ -109,7 +110,7 @@ $contentWidth: 31.875rem;
             left: 0.2rem;
             width: 100%;
             height: 100%;
-            background: url("/images/mobile/events_line.png") no-repeat left center;
+            background: url("~static/images/mobile/events_line.png") no-repeat left center;
           }
 
           .event-item {
@@ -179,7 +180,7 @@ $contentWidth: 31.875rem;
 
       &.nebula-gameplay_container {
         .container-box {
-          background: url("/images/mobile/module-three_explore.png") no-repeat
+          background: url("~static/images/mobile/module-three_explore.png") no-repeat
             left center;
           background-size: contain;
 
@@ -198,7 +199,7 @@ $contentWidth: 31.875rem;
       &.nebula-create_container {
         margin-top: 11.5625rem;
         .container-box {
-          background: url("/images/mobile/module-three_create.png") no-repeat
+          background: url("~static/images/mobile/module-three_create.png") no-repeat
             left center;
           background-size: contain;
         }
@@ -207,18 +208,20 @@ $contentWidth: 31.875rem;
 
     .module-four {
       margin-top: 6.25rem;
-      .public-title {
-        margin-left: 2.625rem;
-      }
       .space-container {
+        overflow: hidden;
         width: 46.8125rem;
         height: 85.125rem;
-        background: url("/images/mobile/space_station.png") no-repeat center
+        background: url("~static/images/mobile/space_station.png") no-repeat center
           center;
         background-size: cover;
         user-select: none;
         position: relative;
         margin-bottom: 10rem;
+        .public-title {
+          margin-left: 2.625rem;
+          margin-top: 4rem;
+        }
         .space-list-box {
           position: absolute;
           top: 30%;
@@ -242,11 +245,15 @@ $contentWidth: 31.875rem;
           .btn {
             width: 3rem;
             height: 10.375rem;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
             position: absolute;
-            opacity: 0.1;
             z-index: 100;
             top: 20%;
+            color: #dedede;
+            font-size: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .prev {
             left: 0;

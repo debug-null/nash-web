@@ -132,10 +132,10 @@ footer {
   .occupation {
     width: 100%;
     height: 23.125rem;
-    background: url("/images/web/footer-occupation.png") no-repeat center top;
+    background: url("~static/images/web/footer-occupation.png") no-repeat center top;
   }
   .footer-container {
-    background: url("/images/web/footer-bg.png") no-repeat center top;
+    background: url("~static/images/web/footer-bg.png") no-repeat center top;
     background-size: cover;
     overflow: hidden;
     padding-bottom: 11.875rem;

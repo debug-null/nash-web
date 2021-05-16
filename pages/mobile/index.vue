@@ -3,7 +3,7 @@
     <video
       id="media"
       src="/images/mobile/start.m4v"
-      preload="metadata"
+      preload
       loop
       ref="media"
     ></video>
@@ -17,7 +17,6 @@
       <div class="module-one">
         <h4>WHAT IS NASH METAVERSE ?</h4>
         <div class="info">
-          WHAT IS NASH METAVERSE?<br />
           The Nash Metaverse is a Cross-Chain Decentralized Metaverse. Choose
           your own path, explore and create an infinitely evolving space
           Metaverse. Become a Captain and Experience the Exciting Competition.
@@ -94,10 +93,10 @@
       </div>
 
       <div class="module-four">
-        <div class="public-title">
-          SPACESHIP
-        </div>
         <div class="space-container">
+          <div class="public-title">
+            SPACESHIP
+          </div>
           <div class="space-list-box">
             <client-only>
               <swiper
@@ -115,8 +114,8 @@
               </swiper>
             </client-only>
 
-            <div class="prev btn" slot="button-prev"></div>
-            <div class="next btn" slot="button-next"></div>
+            <div class="prev btn" slot="button-prev"><</div>
+            <div class="next btn" slot="button-next">></div>
           </div>
 
           <div class="space-bottom">
@@ -124,7 +123,12 @@
               <img src="/images/mobile/attr-img.png" alt="" />
             </div>
             <div class="social">
-              <a v-for="(item, i) in shareLinks" :key="i" :href="item.link" target="_blank">
+              <a
+                v-for="(item, i) in shareLinks"
+                :key="i"
+                :href="item.link"
+                target="_blank"
+              >
                 <img :src="item.img" :alt="item.img" />
               </a>
             </div>
@@ -133,7 +137,7 @@
       </div>
     </div>
     <div class="footer"></div>
-    <ShipName v-if="shipNameVisible" @mask="shipNameVisible = false"/>
+    <ShipName v-if="shipNameVisible" @mask="shipNameVisible = false" />
   </div>
 </template>
 
@@ -143,7 +147,8 @@ export default {
   name: "PosterIndex",
   head() {
     return {
-      script: [{ src: "/js/rem.js" },
+      script: [
+        { src: "/js/rem.js" },
         { src: "/js/web3.min.js" },
         { src: "/js/ShipABI.js" },
         { src: "/js/buy.js" }
@@ -181,7 +186,7 @@ export default {
       ],
       eventOptions: {
         direction: "vertical",
-        loop: true,
+        loop: false,
         autoplay: {
           delay: 0,
           disableOnInteraction: false
@@ -214,8 +219,30 @@ export default {
     enter() {
       let media = this.$refs.media;
       let poster = this.$refs.postContainer;
-      poster.style.background = "initial";
       media.play();
+      media.addEventListener("play", function() {
+        console.log("视频开始播放===》", media);
+        poster.style.background = "initial";
+      });
+      // loop 模式下，不触发ended
+      // media.addEventListener("ended", function() {
+      //   console.log("视频播放结束===》", media);
+      // });
+
+      media.addEventListener(
+        "timeupdate",
+        function() {
+          var timeDisplay;
+          //用秒数来显示当前播放进度
+          timeDisplay = Math.floor(media.currentTime);
+          //当视频播放到 8s的时候做处理,也就是结束时，
+          if (timeDisplay >= 8) {
+            //处理代码
+            window.location.href="https://ship.nashpt.co/new/"
+          }
+        },
+        false
+      );
     },
     buy() {
       this.shipNameVisible = true;
@@ -223,22 +250,18 @@ export default {
   }
 };
 </script>
-<style >
- body{
- background-image:
- url("/images/mobile/bg.png"),
- url("/images/mobile/logo.png"),
- url("/images/mobile/events.png"),
- url("/images/mobile/events_line.png"),
- url("/images/mobile/module-three_explore.png"),
- url('/images/mobile/module-three_create.png')
- url('/images/mobile/space_station.png')
- url("/images/mobile/ship-name_bg.png");
-background-size:0 0;
+<style>
+body {
+  background-image: url("~static/images/mobile/bg.png"), url("/~staticimages/mobile/logo.png"),
+    url("~static/images/mobile/events.png"), url("~static/images/mobile/events_line.png"),
+    url("~static/images/mobile/module-three_explore.png"),
+    url("~static/images/mobile/module-three_create.png")
+      url("~static/images/mobile/space_station.png")
+      url("~static/images/mobile/ship-name_bg.png");
+  background-size: 0 0;
 }
 </style>
 
 <style scoped lang="scss">
 @import "~assets/scss/mobile/index.scss";
 </style>
-
