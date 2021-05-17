@@ -46,7 +46,7 @@
       </div>
       <div class="container-box nebula-gameplay_container">
         <div class="img-box">
-          <img src="/images/web/explore-bg.png" alt="explore-bg.png" />
+          <img src="~static/images/web/explore-bg.png" alt="explore-bg.png" />
         </div>
         <div class="writing-box">
           <div class="title">
@@ -79,7 +79,7 @@
           </div>
         </div>
         <div class="img-box">
-          <img src="/images/web/create-bg.png" alt="create-bg.png" />
+          <img src="~static/images/web/create-bg.png" alt="create-bg.png" />
         </div>
       </div>
     </div>
@@ -108,16 +108,16 @@
           </client-only>
 
           <div class="prev btn" slot="button-prev">
-            <img src="/images/web/icon-left-arrow.png" alt="" />
+            <img src="~static/images/web/icon-left-arrow.png" alt="" />
           </div>
           <div class="next btn" slot="button-next">
-            <img src="/images/web/icon-right-arrow.png" alt="" />
+            <img src="~static/images/web/icon-right-arrow.png" alt="" />
           </div>
         </div>
       </div>
       <div class="space-info">
         <div class="attr-box">
-          <img src="/images/web/attr-info.png" alt="" />
+          <img src="~static/images/web/attr-info.png" alt="" />
         </div>
       </div>
     </div>
@@ -149,9 +149,9 @@ export default {
       },
       // 飞船轮播
       spaceList: [
-        { img: "/images/web/board-1.png" },
-        { img: "/images/web/board-2.png" },
-        { img: "/images/web/board-3.png" }
+        { img: require("@/static/images/web/board-1.png") },
+        { img:  require("@/static/images/web/board-2.png") },
+        { img:  require("@/static/images/web/board-3.png") }
       ],
       spaceSwiperOption: {
         observer: true,
@@ -344,7 +344,7 @@ section {
     .space-container {
       width: 100%;
       height: 73.5625rem;
-      background: url("/images/web/space_station.png") no-repeat center center;
+      background: url("~static/images/web/space_station.png") no-repeat center center;
       background-size: cover;
       user-select: none;
       position: relative;

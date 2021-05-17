@@ -1,4 +1,4 @@
-const BASE_PATH = '/';
+const BASE_PATH = '/gw';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -14,6 +14,9 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+  generate: {
+    dir: `dist/${BASE_PATH}`
   },
   env: {
     baseUrl: 'http://localhost:4000/api'

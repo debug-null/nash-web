@@ -49,27 +49,27 @@ export default {
       shareLinks: [
         {
           link: "https://discord.gg/weX45CNp",
-          img: "/images/web/icon-facebook.png"
+          img: require("@/static/images/web/icon-facebook.png")
         },
         {
           link: "https://t.me/joinchat/o9TnDUaHbYI4MjNl",
-          img: "/images/web/icon-twitter.png"
+          img: require("@/static/images/web/icon-twitter.png")
         },
         {
           link: "https://twitter.com/nashmetaverse",
-          img: "/images/web/icon-youtube.png"
+          img: require("@/static/images/web/icon-youtube.png")
         },
         {
           link: "https://nashmetaverse.medium.com/",
-          img: "/images/web/icon-twitch.png"
+          img: require("@/static/images/web/icon-twitch.png")
         },
         {
           link: "https://nashmetaverse.medium.com/",
-          img: "/images/web/icon-instagram.png"
+          img: require("@/static/images/web/icon-instagram.png")
         },
         {
           link: "https://nashmetaverse.medium.com/",
-          img: "/images/web/icon-vk.png"
+          img: require("@/static/images/web/icon-vk.png")
         }
       ],
       // 底部菜单配置
@@ -132,7 +132,8 @@ footer {
   .occupation {
     width: 100%;
     height: 23.125rem;
-    background: url("~static/images/web/footer-occupation.png") no-repeat center top;
+    background: url("~static/images/web/footer-occupation.png") no-repeat center
+      top;
   }
   .footer-container {
     background: url("~static/images/web/footer-bg.png") no-repeat center top;

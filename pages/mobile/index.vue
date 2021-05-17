@@ -120,7 +120,7 @@
 
           <div class="space-bottom">
             <div class="attr-box">
-              <img src="/images/mobile/attr-img.png" alt="" />
+              <img src="~static/images/mobile/attr-img.png" alt="" />
             </div>
             <div class="social">
               <a
@@ -148,10 +148,10 @@ export default {
   head() {
     return {
       script: [
-        { src: "/js/rem.js" },
-        { src: "/js/web3.min.js" },
-        { src: "/js/ShipABI.js" },
-        { src: "/js/buy.js" }
+        { src: "./js/rem.js" },
+        { src: "./js/web3.min.js" },
+        { src: "./js/ShipABI.js" },
+        { src: "./js/buy.js" }
       ]
     };
   },
@@ -169,19 +169,19 @@ export default {
       shareLinks: [
         {
           link: "https://discord.gg/weX45CNp",
-          img: "/images/mobile/discord.png"
+          img: require("@/static/images/mobile/discord.png")
         },
         {
           link: "https://t.me/joinchat/o9TnDUaHbYI4MjNl",
-          img: "/images/mobile/telegram.png"
+          img: require("@/static/images/mobile/telegram.png")
         },
         {
           link: "https://twitter.com/nashmetaverse",
-          img: "/images/mobile/twitter.png"
+          img: require("@/static/images/mobile/twitter.png")
         },
         {
           link: "https://nashmetaverse.medium.com/",
-          img: "/images/mobile/m.png"
+          img: require("@/static/images/mobile/m.png")
         }
       ],
       eventOptions: {
@@ -197,9 +197,9 @@ export default {
       },
       // 飞船轮播
       spaceList: [
-        { img: "/images/mobile/board-1.png" },
-        { img: "/images/mobile/board-2.png" },
-        { img: "/images/mobile/board-3.png" }
+        { img: require("@/static/images/mobile/board-1.png") },
+        { img: require("@/static/images/mobile/board-2.png") },
+        { img: require("@/static/images/mobile/board-3.png") }
       ],
       spaceSwiperOption: {
         observer: true,
@@ -238,7 +238,7 @@ export default {
           //当视频播放到 8s的时候做处理,也就是结束时，
           if (timeDisplay >= 8) {
             //处理代码
-            window.location.href="https://ship.nashpt.co/new/"
+            window.location.href = "https://ship.nashpt.co/new/";
           }
         },
         false
@@ -252,8 +252,10 @@ export default {
 </script>
 <style>
 body {
-  background-image: url("~static/images/mobile/bg.png"), url("/~staticimages/mobile/logo.png"),
-    url("~static/images/mobile/events.png"), url("~static/images/mobile/events_line.png"),
+  background-image: url("~static/images/mobile/bg.png"),
+    url("/~staticimages/mobile/logo.png"),
+    url("~static/images/mobile/events.png"),
+    url("~static/images/mobile/events_line.png"),
     url("~static/images/mobile/module-three_explore.png"),
     url("~static/images/mobile/module-three_create.png")
       url("~static/images/mobile/space_station.png")

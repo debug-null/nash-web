@@ -2,7 +2,7 @@
   <header>
     <div class="nav-left">
       <div class="logo item">
-        <img src="/images/web/logo.png" alt="logo" />
+        <img src="~static/images/web/logo.png" alt="logo" />
       </div>
       <div class="menu-box item">
         <ul>
@@ -17,11 +17,11 @@
 
     <div class="nav-right">
       <div class="login item">
-        <img src="/images/web/icon-person.png" alt="person.png" v-if="!addressNow"/>
+        <img src="~static/images/web/icon-person.png" alt="person.png" v-if="!addressNow"/>
         <div class="text"> {{addressNow ? addressNow : 'LOG IN'}}</div>
       </div>
       <div class="language item">
-        <img src="/images/web/icon-language.png" alt="language" />
+        <img src="~static/images/web/icon-language.png" alt="language" />
         <div class="language-list">EN</div>
       </div>
     </div>

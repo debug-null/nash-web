@@ -8,7 +8,7 @@
     <!-- buy now 悬浮按钮 -->
     <div class="buy-now" @click="toggleBuy">
       <div>BUY NOW</div>
-      <img src="/images/web/icon-buyNow.png" alt="icon-buyNow.png" />
+      <img src="~static/images/web/icon-buyNow.png" alt="icon-buyNow.png" />
     </div>
 
     <!-- 弹窗 -->
@@ -201,7 +201,7 @@ export default {
       transform: translateX(-50%);
       width: 78.6875rem;
       height: 16.625rem;
-      background-image: url(/images/web/shipName-modal.png);
+      background-image: url(~static/images/web/shipName-modal.png);
       background-size: cover;
       .modal-title {
         position: absolute;
