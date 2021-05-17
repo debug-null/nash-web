@@ -2,7 +2,7 @@
   <div class="index-container" ref="homeContainer">
     <video
       id="media"
-      src="/images/mobile/start.m4v"
+      src="http://qt91pwbe5.hn-bkt.clouddn.com/webH.mp4"
       preload
       loop
       ref="media"

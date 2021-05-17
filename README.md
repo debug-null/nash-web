@@ -16,3 +16,7 @@ $ npm run start or yarn start
 # pm2 部署
 [Nuxt.js docs](https://nuxtjs.org)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+## 注意
+* 目前基准路径为 gw, 若更换目录，需要更新配置，请检索basePath，进行修改

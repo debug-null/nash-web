@@ -2,7 +2,7 @@
   <div class="poster-container" ref="postContainer">
     <video
       id="media"
-      src="/images/mobile/start.m4v"
+      src="http://qt91pwbe5.hn-bkt.clouddn.com/webV.mp4"
       preload
       loop
       ref="media"
