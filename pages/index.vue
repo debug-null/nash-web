@@ -1,7 +1,15 @@
 <template>
-  <div class="index-container">
+  <div class="index-container" ref="homeContainer">
+    <video
+      id="media"
+      src="/images/mobile/start.m4v"
+      preload
+      loop
+      ref="media"
+    ></video>
+
     <Header />
-    <Section />
+    <Section @ClickEnter="clickEnter"/>
     <Footer />
     <div class="buy-container"></div>
 
@@ -66,6 +74,34 @@ export default {
     }
   },
   methods: {
+     clickEnter() {
+      let media = this.$refs.media;
+      let poster = this.$refs.homeContainer;
+      media.play();
+      media.addEventListener("play", function() {
+        console.log("视频开始播放===》", media);
+        poster.style.background = "initial";
+      });
+      // loop 模式下，不触发ended
+      // media.addEventListener("ended", function() {
+      //   console.log("视频播放结束===》", media);
+      // });
+
+      media.addEventListener(
+        "timeupdate",
+        function() {
+          var timeDisplay;
+          //用秒数来显示当前播放进度
+          timeDisplay = Math.floor(media.currentTime);
+          //当视频播放到 8s的时候做处理,也就是结束时，
+          if (timeDisplay >= 8) {
+            //处理代码
+            window.location.href = "https://ship.nashpt.co/new/";
+          }
+        },
+        false
+      );
+    },
     // 打开/关闭购买弹框
     toggleBuy() {
       this.spaceName = "";
@@ -263,6 +299,20 @@ export default {
     }
   }
 }
+
+
+ #media{
+    position: fixed;//视频定位方式设为固定
+    left: 50%;
+    bottom: 50%;//视频位置
+    transform: translate(-50%,50%);
+    min-width: 100%;
+    min-height: 100%; //不会因视频尺寸造成页面需要滚动
+    width: auto;
+    height: auto; //尺寸保持原视频大小
+    z-index: -100; //z轴定位，小于0即可
+     }
+
 </style>
 <style lang="scss">
 // 预加载图片

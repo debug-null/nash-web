@@ -4,7 +4,7 @@
       <h1>NASH METAVERSE</h1>
       <h2>CREATE YOUR UNIVERSE</h2>
       <div class="btn-box">
-        <div class="btn yellow">
+        <div class="btn yellow" @click="enter">
           ENTER
         </div>
         <div class="btn white">
@@ -168,7 +168,11 @@ export default {
     };
   },
   computed: {},
-  methods: {}
+  methods: {
+    enter(){
+      this.$emit('ClickEnter')
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
