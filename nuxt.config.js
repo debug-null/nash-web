@@ -1,4 +1,4 @@
-const BASE_PATH = '/gw';
+const BASE_PATH = '/tst';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

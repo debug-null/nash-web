@@ -47,7 +47,6 @@ export default {
   },
   methods: {
      handleLogin() {
-      doLogin();
       if (addressNow) {
         this.addressNow = `${addressNow.substr(0, 6)}......${addressNow.substr(
           -4

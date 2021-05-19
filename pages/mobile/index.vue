@@ -238,7 +238,7 @@ export default {
           //当视频播放到 8s的时候做处理,也就是结束时，
           if (timeDisplay >= 8) {
             //处理代码
-            window.location.href = "https://ship.nashpt.co/new/";
+            window.location.href = "https://www.nashmetaverse.com/play/";
           }
         },
         false

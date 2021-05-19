@@ -19,4 +19,10 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 
 ## 注意
-* 目前基准路径为 gw, 若更换目录，需要更新配置，请检索basePath，进行修改
+* 目前基准路径为 gw, 若更换目录，需要更新配置
+```js
+检索并修改代码
+BASE_PATH 
+basePath
+```
+
