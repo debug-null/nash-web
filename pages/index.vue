@@ -1,15 +1,14 @@
 <template>
   <div class="index-container" ref="homeContainer">
-    <video
-      id="media"
-      src="http://qt91pwbe5.hn-bkt.clouddn.com/webH.mp4"
-      preload
-      loop
-      ref="media"
-    ></video>
+    <video id="media" preload="metadata" loop ref="media">
+      <source
+        src="http://qt91pwbe5.hn-bkt.clouddn.com/webH.mp4"
+        type="video/mp4"
+      />
+    </video>
 
     <Header />
-    <Section @ClickEnter="clickEnter"/>
+    <Section @ClickEnter="clickEnter" />
     <Footer />
     <div class="buy-container"></div>
 
@@ -74,14 +73,31 @@ export default {
     }
   },
   methods: {
-     clickEnter() {
+    clickEnter() {
       let media = this.$refs.media;
+      console.log("🚀 ~ file: index.vue ~ line 79 ~ clickEnter ~ media", media);
+      console.dir(media)
       let poster = this.$refs.homeContainer;
       media.play();
       media.addEventListener("play", function() {
         console.log("视频开始播放===》", media);
-        poster.style.background = "initial";
+        if (media.networkState === 3) {
+          console.log("没有找到视频资源，直接进行跳转");
+          window.location.href = "http://www.nashmetaverse.com/play/";
+        } else {
+          poster.style.background = "initial";
+        }
       });
+      media.addEventListener("error", function(err) {
+        console.log(
+          "🚀 ~ file: index.vue ~ line 86 ~ media.addEventListener ~ err",
+          err
+        );
+        console.log("视频播放失败===》", media);
+      });
+      media.onerror = function() {
+        console.log("=errr");
+      };
       // loop 模式下，不触发ended
       // media.addEventListener("ended", function() {
       //   console.log("视频播放结束===》", media);
@@ -93,10 +109,13 @@ export default {
           var timeDisplay;
           //用秒数来显示当前播放进度
           timeDisplay = Math.floor(media.currentTime);
+          console.log(
+            "🚀 ~ file: index.vue ~ line 96 ~ clickEnter ~ timeDisplay",
+            timeDisplay
+          );
           //当视频播放到 8s的时候做处理,也就是结束时，
           if (timeDisplay >= 8) {
-            //处理代码
-            window.location.href = "https://www.nashmetaverse.com/play/";
+            window.location.href = "http://www.nashmetaverse.com/play/";
           }
         },
         false
@@ -159,6 +178,7 @@ export default {
         this.nameLoading = false;
         this.$message({ iconClass: "none", message: msg });
       } else {
+        this.nameLoading = false;
         this.$message({ iconClass: "none", message: "Name already taken!" });
       }
     }
@@ -278,8 +298,6 @@ export default {
         }
       }
     }
-
-
   }
 
   .flashing {
@@ -298,30 +316,27 @@ export default {
   }
 }
 
-
- #media{
-    position: fixed;//视频定位方式设为固定
-    left: 50%;
-    bottom: 50%;//视频位置
-    transform: translate(-50%,50%);
-    min-width: 100%;
-    min-height: 100%; //不会因视频尺寸造成页面需要滚动
-    width: auto;
-    height: auto; //尺寸保持原视频大小
-    z-index: -100; //z轴定位，小于0即可
-     }
-
+#media {
+  position: fixed; //视频定位方式设为固定
+  left: 50%;
+  bottom: 50%; //视频位置
+  transform: translate(-50%, 50%);
+  min-width: 100%;
+  min-height: 100%; //不会因视频尺寸造成页面需要滚动
+  width: auto;
+  height: auto; //尺寸保持原视频大小
+  z-index: -100; //z轴定位，小于0即可
+}
 </style>
 <style lang="scss">
 // 预加载图片
- body{
- background-image:
- url("~static/images/web/footer-occupation.png"),
- url("~static/images/web/footer-bg.png"),
- url("~static/images/web/events.png"),
- url("~static/images/web/events_line.png"),
- url('~static/images/web/space_station.png');
-background-size:0 0;
+body {
+  background-image: url("~static/images/web/footer-occupation.png"),
+    url("~static/images/web/footer-bg.png"),
+    url("~static/images/web/events.png"),
+    url("~static/images/web/events_line.png"),
+    url("~static/images/web/space_station.png");
+  background-size: 0 0;
 }
 .public-title {
   font-size: 3.5rem;
@@ -335,16 +350,16 @@ background-size:0 0;
     top: 0;
     left: 0;
     width: 7.3125rem;
-    height: .375rem;
+    height: 0.375rem;
     background: url("~static/images/web/title-line.png") no-repeat center center;
   }
 }
 
-.buy-modal-inner{
+.buy-modal-inner {
   .el-loading-mask {
-      .el-loading-spinner {
-        margin-top: -16px !important;
-      }
+    .el-loading-spinner {
+      margin-top: -16px !important;
     }
+  }
 }
 </style>

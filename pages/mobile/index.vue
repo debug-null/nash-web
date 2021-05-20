@@ -1,12 +1,11 @@
 <template>
   <div class="poster-container" ref="postContainer">
-    <video
-      id="media"
-      src="http://qt91pwbe5.hn-bkt.clouddn.com/webV.mp4"
-      preload
-      loop
-      ref="media"
-    ></video>
+    <video id="media" preload="metadata" loop ref="media">
+      <source
+        src="http://qt91pwbe5.hn-bkt.clouddn.com/webV.mp4"
+        type="video/mp4"
+      />
+    </video>
     <a class="logo" href="./"></a>
     <div class="top">
       <h1>NASH METAVERSE</h1>
@@ -218,27 +217,41 @@ export default {
   methods: {
     enter() {
       let media = this.$refs.media;
-      let poster = this.$refs.postContainer;
+      console.dir(media);
+      let poster = this.$refs.homeContainer;
       media.play();
       media.addEventListener("play", function() {
         console.log("视频开始播放===》", media);
-        poster.style.background = "initial";
+        if (media.networkState === 3) {
+          console.log("没有找到视频资源，直接进行跳转");
+          window.location.href = "http://www.nashmetaverse.com/play/";
+        } else {
+          poster.style.background = "initial";
+        }
       });
-      // loop 模式下，不触发ended
-      // media.addEventListener("ended", function() {
-      //   console.log("视频播放结束===》", media);
-      // });
-
+      media.addEventListener("error", function(err) {
+        console.log(
+          "🚀 ~ file: index.vue ~ line 86 ~ media.addEventListener ~ err",
+          err
+        );
+        console.log("视频播放失败===》", media);
+      });
+      media.onerror = function() {
+        console.log("=errr");
+      };
       media.addEventListener(
         "timeupdate",
         function() {
           var timeDisplay;
           //用秒数来显示当前播放进度
           timeDisplay = Math.floor(media.currentTime);
+          console.log(
+            "🚀 ~ file: index.vue ~ line 96 ~ clickEnter ~ timeDisplay",
+            timeDisplay
+          );
           //当视频播放到 8s的时候做处理,也就是结束时，
           if (timeDisplay >= 8) {
-            //处理代码
-            window.location.href = "https://www.nashmetaverse.com/play/";
+            window.location.href = "http://www.nashmetaverse.com/play/";
           }
         },
         false
