@@ -114,7 +114,7 @@ export default {
             timeDisplay
           );
           //当视频播放到 8s的时候做处理,也就是结束时，
-          if (timeDisplay >= 8) {
+          if (timeDisplay >= 4) {
             window.location.href = "http://www.nashmetaverse.com/play/";
           }
         },

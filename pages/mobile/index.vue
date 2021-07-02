@@ -218,7 +218,7 @@ export default {
     enter() {
       let media = this.$refs.media;
       console.dir(media);
-      let poster = this.$refs.homeContainer;
+      let poster = this.$refs.postContainer;
       media.play();
       media.addEventListener("play", function() {
         console.log("视频开始播放===》", media);
@@ -250,7 +250,7 @@ export default {
             timeDisplay
           );
           //当视频播放到 8s的时候做处理,也就是结束时，
-          if (timeDisplay >= 8) {
+          if (timeDisplay >= 4) {
             window.location.href = "http://www.nashmetaverse.com/play/";
           }
         },
