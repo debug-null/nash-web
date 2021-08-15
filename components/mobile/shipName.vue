@@ -164,7 +164,6 @@ export default {
       .active {
         color: #000;
         border: none;
-        font-family: "ali-bold";
         font-size: 1.625rem;
         background-color: #ffcf30;
       }

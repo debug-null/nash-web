@@ -174,7 +174,6 @@ section {
     }
     h2 {
       font-size: 2.5rem;
-      font-family: ZenDots-Regular;
       font-weight: normal;
       text-justify: justify;
       font-weight: normal;
@@ -247,17 +246,6 @@ section {
     margin-top: 14.375rem;
     width: 57.875rem;
     height: 10.375rem;
-    h4 {
-      color: #ffd600;
-      font-size: 1.875rem;
-      font-family: ali-medium;
-      margin-bottom: 0.625rem;
-    }
-    .info {
-      font-size: 1.5rem;
-      color: #fff;
-      font-family: ali-regular;
-    }
   }
   .module-three {
     margin-top: 11.875rem;
@@ -291,7 +279,6 @@ section {
 
         .event-item {
           color: rgba(255, 255, 255, 0.6);
-          font-family: ali-regular;
           position: relative;
           padding-left: 1.5625rem;
           transition: all 0.5s;
@@ -338,7 +325,6 @@ section {
         }
         .writing {
           font-size: 1.5rem;
-          font-family: "ali-regular";
         }
       }
       &.nebula-create_container {

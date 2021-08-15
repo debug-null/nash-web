@@ -1,7 +1,7 @@
 if (process.browser) {
   let windowWidth = window.screen.width
   let { origin, pathname } = window.location
-  let basePath = ''
+  let basePath = '/temp'
   let mobilePath = 'mobile'
   if (windowWidth <= 750 && !pathname.includes(mobilePath)) {
     let mobileLink = `${origin}${basePath ? '/' + basePath : ''}/${mobilePath}`

@@ -34,7 +34,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: sans-serif;
   font-weight: 100 !important;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

@@ -47,8 +47,8 @@ export default {
       display: flex;
       align-items: center;
       .logo {
-        width: 4.125rem;
-        height: 4rem;
+        width: 4.3125rem;
+        height: 3.625rem;
         img {
           width: 100%;
           height: 100%;

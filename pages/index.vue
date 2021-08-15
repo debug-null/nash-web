@@ -136,7 +136,7 @@ export default {
   background-size: cover;
   color: #fff;
   user-select: none;
-  font-family: "ali-medium";
+  font-family: "zen-dots";
   overflow: hidden;
   .buy-modal {
     position: fixed;
@@ -190,7 +190,6 @@ export default {
           color: #1a141a;
           font-size: 1.875rem;
           font-weight: bold;
-          font-family: "ali-bold";
           margin-top: 1.25rem;
           cursor: pointer;
           margin-left: 5.625rem;
@@ -228,7 +227,6 @@ body {
 .public-title {
   font-size: 3.5rem;
   color: #fff;
-  font-family: ali-medium;
   position: relative;
   margin-bottom: 5rem;
   &::after {
