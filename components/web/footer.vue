@@ -2,41 +2,7 @@
   <footer>
     <div class="occupation"></div>
     <div class="footer-container">
-      <div class="top-conent">
-        <h2>FOLLOW NASH METAVERSE</h2>
-        <div class="social">
-          <a
-            v-for="(item, i) in shareLinks"
-            :key="i"
-            :href="item.link"
-            target="_blank"
-          >
-            <img :src="item.img" :alt="item.img" />
-          </a>
-        </div>
-      </div>
-      <div class="bottom-menu">
-        <div class="menu-type" v-for="item in menus" :key="item.type">
-          <h3>{{ item.type }}</h3>
-          <ul class="menu-list">
-            <li v-for="(menu, i) in item.list" :key="i">
-              <a :href="menu.link">{{ menu.text }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="game-info">
-        <p>NASH METAVERSE is a blockchain meta-universe MMO game.</p>
-        <p>
-          Every player owns a spacecraft, In NASH METAVERSE, every player has
-          the chance to become the greatest captain. In NASH METAVERSE, players
-          can cross
-        </p>
-        <p>
-          thousands of planetary systems and participate in activities with
-          thousand other players, by battle, trade and exploration.
-        </p>
-      </div>
+      <p>NASH Metaverse &copy; 2021, All rights reserved</p>
     </div>
   </footer>
 </template>
@@ -46,32 +12,7 @@ export default {
   components: {},
   data() {
     return {
-      shareLinks: [
-        {
-          link: "https://discord.gg/weX45CNp",
-          img: require("@/static/images/web/icon-facebook.png")
-        },
-        {
-          link: "https://t.me/joinchat/o9TnDUaHbYI4MjNl",
-          img: require("@/static/images/web/icon-twitter.png")
-        },
-        {
-          link: "https://twitter.com/nashmetaverse",
-          img: require("@/static/images/web/icon-youtube.png")
-        },
-        {
-          link: "https://nashmetaverse.medium.com/",
-          img: require("@/static/images/web/icon-twitch.png")
-        },
-        {
-          link: "https://nashmetaverse.medium.com/",
-          img: require("@/static/images/web/icon-instagram.png")
-        },
-        {
-          link: "https://nashmetaverse.medium.com/",
-          img: require("@/static/images/web/icon-vk.png")
-        }
-      ],
+
       // 底部菜单配置
       menus: [
         {
@@ -136,63 +77,12 @@ footer {
       top;
   }
   .footer-container {
-    background: url("~static/images/web/footer-bg.png") no-repeat center top;
-    background-size: cover;
+    background-color: #111111;
     overflow: hidden;
-    padding-bottom: 11.875rem;
-    .top-conent {
-      h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-top: 1.5625rem;
-        padding-bottom: 10.625rem;
-      }
-      .social {
-        width: 68.125rem;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        a {
-          display: inline-block;
-          width: 4.9375rem;
-          height: 4.9375rem;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
-    .bottom-menu {
-      width: 75rem;
-      margin: 6.25rem auto 0.625rem auto;
-      display: flex;
-      justify-content: space-between;
-      .menu-type {
-        h3 {
-          font-size: 1rem;
-          color: #999;
-          margin-bottom: 1.875rem;
-        }
-        .menu-list {
-          li {
-            margin-bottom: 1.875rem;
-            a {
-              text-decoration: none;
-              color: #fff;
-              &:hover {
-                text-decoration: underline;
-              }
-            }
-          }
-        }
-      }
-    }
-    .game-info {
-      padding: 6.25rem 0 6rem 0;
-      font-size: 1rem;
-      text-align: center;
-    }
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

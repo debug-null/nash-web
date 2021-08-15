@@ -9,8 +9,7 @@
         </div>
       </div>
     </div>
-    <div class="module-two">
-    </div>
+    <div class="module-two"></div>
     <div class="module-three">
       <div class="public-title">
         WHAT IS HAPPENING IN NASH METAVERSE ?
@@ -45,11 +44,7 @@
           <div class="writing">
             <p>Obtain your NASH spaceship NFT.</p>
             <p>Compete, Upgrade, Build, Create, and join Alliance.</p>
-            <p>Earn income, Grow and Evolve with the Nash Metaverse.</p>
-            <p>
-              *In Nash Universe, a JUMP costs up to only 2 transactions. Less
-              GAS fees.
-            </p>
+            <p>Grow and Evolve with the NASH Metaverse.</p>
           </div>
         </div>
       </div>
@@ -106,8 +101,15 @@
         </div>
       </div>
       <div class="space-info">
-        <div class="attr-box">
-          <img src="~static/images/web/attr-info.png" alt="" />
+        <div class="social">
+          <a
+            v-for="(item, i) in shareLinks"
+            :key="i"
+            :href="item.link"
+            target="_blank"
+          >
+            <img :src="item.img" :alt="item.img" />
+          </a>
         </div>
       </div>
     </div>
@@ -120,11 +122,13 @@ export default {
   data() {
     return {
       events: [
-        { text: "April. 15. 5000 spaceships launched" },
-        { text: "May 15th - NASH Metaverse First Playable" },
-        { text: "COMING SOON - Competitive Mode" },
-        { text: "COMING SOON - Planet NFT" },
-        { text: "COMING SOON - Open Editor to Players" }
+        { text: "April. 15. 5000 spaceships Launched" },
+        { text: "May. 15. Fisrt Playable – 1" },
+        { text: "Jun. 21. Fisrt Playable – 2" },
+        { text: "COMING SOON – HyperJump" },
+        { text: "COMING SOON – PlantMaker" },
+        { text: "COMING SOON – Galactic Alliances" },
+        { text: "COMING SOON – Dyson Spheres" },
       ],
       eventOptions: {
         direction: "vertical",
@@ -140,8 +144,8 @@ export default {
       // 飞船轮播
       spaceList: [
         { img: require("@/static/images/web/board-1.png") },
-        { img:  require("@/static/images/web/board-2.png") },
-        { img:  require("@/static/images/web/board-3.png") }
+        { img: require("@/static/images/web/board-2.png") },
+        { img: require("@/static/images/web/board-3.png") }
       ],
       spaceSwiperOption: {
         observer: true,
@@ -154,13 +158,31 @@ export default {
           nextEl: ".next",
           prevEl: ".prev"
         }
-      }
+      },
+      shareLinks: [
+        {
+          link: "https://discord.gg/Xz7fzbvB",
+          img: require("@/static/images/mobile/discord.png")
+        },
+        {
+          link: "https://t.me/nashprotocol",
+          img: require("@/static/images/mobile/telegram.png")
+        },
+        {
+          link: "https://twitter.com/nashmetaverse",
+          img: require("@/static/images/mobile/twitter.png")
+        },
+        {
+          link: "https://nashmetaverse.medium.com/",
+          img: require("@/static/images/mobile/m.png")
+        }
+      ]
     };
   },
   computed: {},
   methods: {
-    enter(){
-      this.$emit('ClickEnter')
+    enter() {
+      this.$emit("ClickEnter");
     }
   }
 };
@@ -256,7 +278,8 @@ section {
           left: 0.3rem;
           width: 100%;
           height: 100%;
-          background: url("~static/images/web/events_line.png") no-repeat left center;
+          background: url("~static/images/web/events_line.png") no-repeat left
+            center;
         }
 
         .event-item {
@@ -339,7 +362,8 @@ section {
     .space-container {
       width: 100%;
       height: 73.5625rem;
-      background: url("~static/images/web/space_station.png") no-repeat center center;
+      background: url("~static/images/web/space_station.png") no-repeat center
+        center;
       background-size: cover;
       user-select: none;
       position: relative;
@@ -397,13 +421,19 @@ section {
     }
 
     .space-info {
-      .attr-box {
-        width: 73.9375rem;
-        height: 15.3125rem;
+      .social {
+        width: 68.125rem;
         margin: 0 auto;
-        margin-bottom: 5rem;
-        img {
-          width: 100%;
+        display: flex;
+        justify-content: space-between;
+        a {
+          display: inline-block;
+          width: 4.9375rem;
+          height: 4.9375rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
     }
