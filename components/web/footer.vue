@@ -1,6 +1,17 @@
 <template>
   <footer>
-    <div class="occupation"></div>
+    <div class="occupation">
+       <div class="social">
+          <a
+            v-for="(item, i) in shareLinks"
+            :key="i"
+            :href="item.link"
+            target="_blank"
+          >
+            <img :src="item.img" :alt="item.img" />
+          </a>
+        </div>
+    </div>
     <div class="footer-container">
       <p>NASH Metaverse &copy; 2021, All rights reserved</p>
     </div>
@@ -61,6 +72,24 @@ export default {
             { text: "RSS Feed", link: "" }
           ]
         }
+      ],
+        shareLinks: [
+        {
+          link: "https://discord.gg/Xz7fzbvB",
+          img: require("@/static/images/mobile/discord.png")
+        },
+        {
+          link: "https://t.me/nashprotocol",
+          img: require("@/static/images/mobile/telegram.png")
+        },
+        {
+          link: "https://twitter.com/nashmetaverse",
+          img: require("@/static/images/mobile/twitter.png")
+        },
+        {
+          link: "https://nashmetaverse.medium.com/",
+          img: require("@/static/images/mobile/m.png")
+        }
       ]
     };
   },
@@ -75,14 +104,34 @@ footer {
     height: 23.125rem;
     background: url("~static/images/web/footer-occupation.png") no-repeat center
       top;
+      display: flex;
+      align-items: center;
+
+       .social {
+        width: 68.125rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        a {
+          display: inline-block;
+          width: 4.9375rem;
+          height: 4.9375rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
   }
   .footer-container {
-    background-color: #111111;
-    overflow: hidden;
-    height: 3.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #1b1917;
+    p{
+      padding: 1.25rem;
+      color: #a4a3a2;
+    }
   }
 }
 </style>

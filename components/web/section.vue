@@ -1,10 +1,11 @@
 <template>
   <section>
     <div class="module-one">
-      <h1>NASH METAVERSE</h1>
+      <h1><img src="~static/images/web/title.png" alt="title" /></h1>
       <h2>CREATE YOUR UNIVERSE</h2>
       <div class="btn-box">
-        <div class="btn yellow" @click="enter">
+        <div class="btn explor" @click="enter">
+          <span></span><span></span><span></span><span></span>
           EXPLOR
         </div>
       </div>
@@ -100,18 +101,6 @@
           </div>
         </div>
       </div>
-      <div class="space-info">
-        <div class="social">
-          <a
-            v-for="(item, i) in shareLinks"
-            :key="i"
-            :href="item.link"
-            target="_blank"
-          >
-            <img :src="item.img" :alt="item.img" />
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -128,7 +117,7 @@ export default {
         { text: "COMING SOON – HyperJump" },
         { text: "COMING SOON – PlantMaker" },
         { text: "COMING SOON – Galactic Alliances" },
-        { text: "COMING SOON – Dyson Spheres" },
+        { text: "COMING SOON – Dyson Spheres" }
       ],
       eventOptions: {
         direction: "vertical",
@@ -159,24 +148,7 @@ export default {
           prevEl: ".prev"
         }
       },
-      shareLinks: [
-        {
-          link: "https://discord.gg/Xz7fzbvB",
-          img: require("@/static/images/mobile/discord.png")
-        },
-        {
-          link: "https://t.me/nashprotocol",
-          img: require("@/static/images/mobile/telegram.png")
-        },
-        {
-          link: "https://twitter.com/nashmetaverse",
-          img: require("@/static/images/mobile/twitter.png")
-        },
-        {
-          link: "https://nashmetaverse.medium.com/",
-          img: require("@/static/images/mobile/m.png")
-        }
-      ]
+
     };
   },
   computed: {},
@@ -190,47 +162,82 @@ export default {
 <style lang="scss" scoped>
 section {
   .module-one {
-    width: 47.5rem;
     margin: 0 auto;
-    text-align: center;
     padding-top: 10.3125rem;
     color: #fff;
+    width: 111.25rem;
+    margin: 3.75rem auto 0 auto;
     h1 {
-      font-size: 5.125rem;
-      font-family: ali-medium;
-      font-weight: normal;
+      img {
+        margin-left: -13px;
+      }
     }
     h2 {
       font-size: 2.5rem;
-      font-family: ali-regular;
+      font-family: ZenDots-Regular;
       font-weight: normal;
       text-justify: justify;
-      text-align-last: justify;
       font-weight: normal;
       letter-spacing: 0.5rem;
     }
     .btn-box {
-      margin-top: 3.125rem;
-      display: flex;
-      justify-content: center;
-      align-content: space-between;
-      align-items: flex-end;
+      margin-top: 15.625rem;
       .btn {
-        font-size: 1.875rem;
-        text-align: center;
-        width: 17.5rem;
-        height: 5rem;
+        font-size: 2rem;
         line-height: 5rem;
-        font-family: ali-bold;
+        font-family: zen-dots;
         cursor: pointer;
-        &.yellow {
-          color: #000;
-          background-color: #ffd522;
-          margin-right: 2.1875rem;
+      }
+      .explor {
+        display: inline-block;
+        padding: 1.5625rem 1.875rem;
+        overflow: hidden;
+        position: relative;
+        span {
+          position: absolute;
+          display: block;
+          &:nth-child(1) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd600);
+            animation: animate1 1s linear infinite;
+          }
+          &:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #ffd600);
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.25s;
+          }
+          &:nth-child(3) {
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #ffd600);
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.5s;
+          }
+          &:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #ffd600);
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.75s;
+          }
         }
-        &.white {
-          color: #000;
-          background-color: #fff;
+        &:hover {
+          background: #ffd600;
+          color: #050801;
+          box-shadow: 0 0 5px #ffd600, 0 0 25px #ffd600, 0 0 50px #ffd600,
+            0 0 200px #ffd600;
+          -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
         }
       }
     }
@@ -419,24 +426,6 @@ section {
         }
       }
     }
-
-    .space-info {
-      .social {
-        width: 68.125rem;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        a {
-          display: inline-block;
-          width: 4.9375rem;
-          height: 4.9375rem;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
   }
 }
 .events-box .event-list .event-item.swiper-slide-active p {
@@ -452,5 +441,49 @@ section {
   .swiper-space-item.swiper-slide-active
   .swiper-img {
   transform: scale(1.2);
+}
+
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes animate3 {
+  0% {
+    right: -100%;
+  }
+
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+
+  50%,
+  100% {
+    bottom: 100%;
+  }
 }
 </style>

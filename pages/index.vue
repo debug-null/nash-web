@@ -132,7 +132,7 @@ export default {
   min-width: 750px;
   width: 100%;
   height: 100%;
-  background: url("~static/images/web/bg.png") no-repeat center center;
+  background: url("~static/images/web/bg.png") no-repeat center 0px;
   background-size: cover;
   color: #fff;
   user-select: none;

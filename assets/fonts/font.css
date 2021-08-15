@@ -1,24 +1,29 @@
-@font-face {  
+@font-face {
     font-family: 'ali-black';
     src: url('AlibabaSans-Black.otf');
 }
-@font-face {  
+@font-face {
     font-family: 'ali-bold';
     src: url('AlibabaSans-Bold.otf');
 }
-@font-face {  
+@font-face {
     font-family: 'ali-heavy';
     src: url('AlibabaSans-Heavy.otf');
 }
-@font-face {  
+@font-face {
     font-family: 'ali-light';
     src: url('AlibabaSans-Light.otf');
 }
-@font-face {  
+@font-face {
     font-family: 'ali-medium';
     src: url('AlibabaSans-Medium.otf');
 }
-@font-face {  
+@font-face {
     font-family: 'ali-regular';
     src: url('AlibabaSans-Regular.otf');
+}
+
+@font-face {
+  font-family: 'zen-dots';
+  src: url('ZenDots-Regular.ttf');
 }
