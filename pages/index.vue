@@ -1,12 +1,5 @@
 <template>
   <div class="index-container" ref="homeContainer">
-    <video id="media" preload="metadata" loop ref="media">
-      <source
-        src="http://qt91pwbe5.hn-bkt.clouddn.com/webH.mp4"
-        type="video/mp4"
-      />
-    </video>
-
     <Header />
     <Section @ClickEnter="clickEnter" />
     <Footer />
@@ -74,52 +67,7 @@ export default {
   },
   methods: {
     clickEnter() {
-      let media = this.$refs.media;
-      console.log("🚀 ~ file: index.vue ~ line 79 ~ clickEnter ~ media", media);
-      console.dir(media)
-      let poster = this.$refs.homeContainer;
-      media.play();
-      media.addEventListener("play", function() {
-        console.log("视频开始播放===》", media);
-        if (media.networkState === 3) {
-          console.log("没有找到视频资源，直接进行跳转");
-          window.location.href = "http://www.nashmetaverse.com/play/";
-        } else {
-          poster.style.background = "initial";
-        }
-      });
-      media.addEventListener("error", function(err) {
-        console.log(
-          "🚀 ~ file: index.vue ~ line 86 ~ media.addEventListener ~ err",
-          err
-        );
-        console.log("视频播放失败===》", media);
-      });
-      media.onerror = function() {
-        console.log("=errr");
-      };
-      // loop 模式下，不触发ended
-      // media.addEventListener("ended", function() {
-      //   console.log("视频播放结束===》", media);
-      // });
-
-      media.addEventListener(
-        "timeupdate",
-        function() {
-          var timeDisplay;
-          //用秒数来显示当前播放进度
-          timeDisplay = Math.floor(media.currentTime);
-          console.log(
-            "🚀 ~ file: index.vue ~ line 96 ~ clickEnter ~ timeDisplay",
-            timeDisplay
-          );
-          //当视频播放到 8s的时候做处理,也就是结束时，
-          if (timeDisplay >= 4) {
-            window.location.href = "http://www.nashmetaverse.com/play/";
-          }
-        },
-        false
-      );
+         window.location.href = "http://www.nashmetaverse.com/play/";
     },
     // 打开/关闭购买弹框
     toggleBuy() {
@@ -314,18 +262,6 @@ export default {
       opacity: 1;
     }
   }
-}
-
-#media {
-  position: fixed; //视频定位方式设为固定
-  left: 50%;
-  bottom: 50%; //视频位置
-  transform: translate(-50%, 50%);
-  min-width: 100%;
-  min-height: 100%; //不会因视频尺寸造成页面需要滚动
-  width: auto;
-  height: auto; //尺寸保持原视频大小
-  z-index: -100; //z轴定位，小于0即可
 }
 </style>
 <style lang="scss">

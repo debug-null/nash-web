@@ -1,11 +1,5 @@
 <template>
   <div class="poster-container" ref="postContainer">
-    <video id="media" preload="metadata" loop ref="media">
-      <source
-        src="http://qt91pwbe5.hn-bkt.clouddn.com/webV.mp4"
-        type="video/mp4"
-      />
-    </video>
     <a class="logo" href="./"></a>
     <div class="top">
       <h1>NASH METAVERSE</h1>
@@ -216,46 +210,7 @@ export default {
   },
   methods: {
     enter() {
-      let media = this.$refs.media;
-      console.dir(media);
-      let poster = this.$refs.postContainer;
-      media.play();
-      media.addEventListener("play", function() {
-        console.log("视频开始播放===》", media);
-        if (media.networkState === 3) {
-          console.log("没有找到视频资源，直接进行跳转");
           window.location.href = "http://www.nashmetaverse.com/play/";
-        } else {
-          poster.style.background = "initial";
-        }
-      });
-      media.addEventListener("error", function(err) {
-        console.log(
-          "🚀 ~ file: index.vue ~ line 86 ~ media.addEventListener ~ err",
-          err
-        );
-        console.log("视频播放失败===》", media);
-      });
-      media.onerror = function() {
-        console.log("=errr");
-      };
-      media.addEventListener(
-        "timeupdate",
-        function() {
-          var timeDisplay;
-          //用秒数来显示当前播放进度
-          timeDisplay = Math.floor(media.currentTime);
-          console.log(
-            "🚀 ~ file: index.vue ~ line 96 ~ clickEnter ~ timeDisplay",
-            timeDisplay
-          );
-          //当视频播放到 8s的时候做处理,也就是结束时，
-          if (timeDisplay >= 4) {
-            window.location.href = "http://www.nashmetaverse.com/play/";
-          }
-        },
-        false
-      );
     },
     buy() {
       this.shipNameVisible = true;
