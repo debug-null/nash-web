@@ -232,7 +232,7 @@ body {
   &::after {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 7.3125rem;
     height: 0.375rem;

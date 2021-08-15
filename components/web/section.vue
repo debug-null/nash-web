@@ -34,15 +34,13 @@
       <div class="public-title">
         GAMEPLAY
       </div>
-      <div class="container-box nebula-gameplay_container">
-        <div class="img-box">
-          <img src="~static/images/web/explore-bg.png" alt="explore-bg.png" />
-        </div>
-        <div class="writing-box">
-          <div class="title">
+
+      <div class="nebula-container-box new-container-box">
+        <div class="ncb-box">
+          <div class="left">
             Explore
           </div>
-          <div class="writing">
+          <div class="right">
             <p>Obtain your NASH spaceship NFT.</p>
             <p>Compete, Upgrade, Build, Create, and join Alliance.</p>
             <p>Grow and Evolve with the NASH Metaverse.</p>
@@ -50,22 +48,19 @@
         </div>
       </div>
 
-      <div class="container-box nebula-create_container">
-        <div class="writing-box">
-          <div class="title">
+      <div class="create-container-box new-container-box">
+        <div class="ncb-box">
+          <div class="left">
             Create
           </div>
-          <div class="writing">
+          <div class="right">
+            <p>Open and Transparent On-Chain Data to All Players.</p>
+            <p>Own and Control your Personalized NASH Metaverse NFTs.</p>
             <p>
-              Open and Transparent On-Chain Data to All Players.<br />
-              Own and Control your Personalized NASH Metaverse NFTs.<br />
               Use NASH editor to Create Highly Interactive Applications and
               Games.
             </p>
           </div>
-        </div>
-        <div class="img-box">
-          <img src="~static/images/web/create-bg.png" alt="create-bg.png" />
         </div>
       </div>
     </div>
@@ -147,8 +142,7 @@ export default {
           nextEl: ".next",
           prevEl: ".prev"
         }
-      },
-
+      }
     };
   },
   computed: {},
@@ -167,8 +161,11 @@ section {
     color: #fff;
     width: 111.25rem;
     margin: 3.75rem auto 0 auto;
+    text-align: center;
     h1 {
       img {
+        width: 76.5rem;
+        height: 6.625rem;
         margin-left: -13px;
       }
     }
@@ -189,7 +186,7 @@ section {
       }
       .explor {
         display: inline-block;
-        padding: 1.5625rem 1.875rem;
+        padding: 1.5625rem 4em;
         overflow: hidden;
         position: relative;
         span {
@@ -305,8 +302,51 @@ section {
   .module-four {
     margin-top: 11.875rem;
     .public-title {
-      margin-left: 13.125rem;
+      margin-left: 6.25rem;
     }
+    .new-container-box {
+      position: relative;
+      margin-left: 3%;
+      .ncb-box {
+        position: absolute;
+        top: 24%;
+        left: 5%;
+        display: flex;
+        justify-content: space-around;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        .left {
+          width: 14rem;
+          font-size: 2.5rem;
+          margin-right: 4.375rem;
+          position: relative;
+        }
+        .right {
+          flex: 1;
+          font-size: 1.5rem;
+          padding-left: 1.875rem;
+          margin-top: 0.9375rem;
+          line-height: 4.5rem;
+          border-left: 0.25rem solid #feca39;
+          letter-spacing: 2.4px;
+        }
+      }
+    }
+
+    .nebula-container-box {
+      background: url(/images/web/explore-bg.png) no-repeat 0;
+      height: 41.3125rem;
+      background-size: contain;
+    }
+
+    .create-container-box {
+      background: url(/images/web/create-bg.png) no-repeat 0;
+      height: 28.875rem;
+      background-size: contain;
+      margin-top: 6%;
+    }
+
     .container-box {
       height: 28.75rem;
       position: relative;
@@ -320,6 +360,7 @@ section {
       .writing-box {
         margin-top: 8.75rem;
         padding-left: 2.1875rem;
+        display: flex;
         .title {
           font-size: 3.5rem;
         }

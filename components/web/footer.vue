@@ -1,19 +1,17 @@
 <template>
   <footer>
     <div class="occupation">
-       <div class="social">
-          <a
-            v-for="(item, i) in shareLinks"
-            :key="i"
-            :href="item.link"
-            target="_blank"
-          >
-            <img :src="item.img" :alt="item.img" />
-          </a>
-        </div>
-    </div>
-    <div class="footer-container">
-      <p>NASH Metaverse &copy; 2021, All rights reserved</p>
+      <div class="social">
+        <a
+          v-for="(item, i) in shareLinks"
+          :key="i"
+          :href="item.link"
+          target="_blank"
+        >
+          <img :src="item.img" :alt="item.img" />
+        </a>
+      </div>
+      <p class="copyright">NASH Metaverse &copy; 2021, All rights reserved</p>
     </div>
   </footer>
 </template>
@@ -23,7 +21,6 @@ export default {
   components: {},
   data() {
     return {
-
       // 底部菜单配置
       menus: [
         {
@@ -73,7 +70,7 @@ export default {
           ]
         }
       ],
-        shareLinks: [
+      shareLinks: [
         {
           link: "https://discord.gg/Xz7fzbvB",
           img: require("@/static/images/mobile/discord.png")
@@ -104,34 +101,39 @@ footer {
     height: 23.125rem;
     background: url("~static/images/web/footer-occupation.png") no-repeat center
       top;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    .social {
+      width: 68.125rem;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
-
-       .social {
-        width: 68.125rem;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        a {
-          display: inline-block;
-          width: 4.9375rem;
-          height: 4.9375rem;
-          img {
-            width: 100%;
-            height: 100%;
-          }
+      justify-content: space-between;
+      a {
+        display: inline-block;
+        width: 4.9375rem;
+        height: 4.9375rem;
+        img {
+          width: 100%;
+          height: 100%;
         }
       }
+    }
+    .copyright {
+      margin-top: 6.25rem;
+      padding: 1.25rem;
+      color: #a4a3a2;
+      position: absolute;
+      bottom: 0;
+    }
   }
   .footer-container {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #1b1917;
-    p{
-      padding: 1.25rem;
-      color: #a4a3a2;
-    }
   }
 }
 </style>
