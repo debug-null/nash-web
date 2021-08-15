@@ -256,14 +256,6 @@ $contentWidth: 31.875rem;
           bottom: 5%;
           left: 50%;
           transform: translate(-50%,0);
-          .attr-box {
-            width: 35.6875rem;
-            margin: 0 auto;
-            margin-bottom: 5rem;
-            img {
-              width: 100%;
-            }
-          }
           .social {
             width: 31.5625rem;
             margin: 0 auto;
@@ -285,6 +277,14 @@ $contentWidth: 31.875rem;
   }
 
   .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b1917;
+    .copyright{
+      padding: 1.25rem;
+      color: #a4a3a2;
+    }
   }
 
   // 公共样式

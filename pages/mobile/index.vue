@@ -18,10 +18,7 @@
 
         <div class="btn-box">
           <div class="btn yellow" @click="enter">
-            ENTER
-          </div>
-          <div class="btn white" @click="buy">
-            BUY NOW
+          Explore
           </div>
         </div>
       </div>
@@ -57,11 +54,7 @@
             <div class="right">
               <p>Obtain your NASH spaceship NFT.</p>
               <p>Compete, Upgrade, Build, Create, and join Alliance.</p>
-              <p>Earn income, Grow and Evolve with the Nash Metaverse.</p>
-              <p>
-                *In Nash Universe, a JUMP costs up to only 2 transactions. Less
-                GAS fees.
-              </p>
+              <p>Grow and Evolve with the NASH Metaverse.</p>
             </div>
           </div>
         </div>
@@ -74,11 +67,10 @@
               <p>CREATE</p>
             </div>
             <div class="right">
-              <p>Open and Transparent On-Chain Data to All Players.</p>
               <p>Own and Control your Personalized NASH Metaverse NFTs.</p>
+              <p>Open and Transparent On-Chain Data to All Players.</p>
               <p>
-                Use NASH editor to Create Highly Interactive Applications and
-                Games.
+               Use NASH editor to Create Highly Interactive Applications and Games.
               </p>
             </div>
           </div>
@@ -112,9 +104,6 @@
           </div>
 
           <div class="space-bottom">
-            <div class="attr-box">
-              <img src="~static/images/mobile/attr-img.png" alt="" />
-            </div>
             <div class="social">
               <a
                 v-for="(item, i) in shareLinks"
@@ -129,7 +118,9 @@
         </div>
       </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+         <p class="copyright">NASH Metaverse &copy; 2021, All rights reserved</p>
+    </div>
     <ShipName v-if="shipNameVisible" @mask="shipNameVisible = false" />
   </div>
 </template>
@@ -153,11 +144,13 @@ export default {
     return {
       shipNameVisible: false,
       events: [
-        { text: "April. 15. 5000 spaceships launched" },
-        { text: "May 15th - NASH Metaverse First Playable" },
-        { text: "COMING SOON - Competitive Mode" },
-        { text: "COMING SOON - Planet NFT" },
-        { text: "COMING SOON - Open Editor to Players" }
+        { text: "April. 15. 5000 spaceships Launched" },
+        { text: "May. 15. Fisrt Playable – 1" },
+        { text: "Jun. 21. Fisrt Playable – 2" },
+        { text: "COMING SOON – HyperJump" },
+        { text: "COMING SOON – PlantMaker" },
+        { text: "COMING SOON – Galactic Alliances" },
+        { text: "COMING SOON – Dyson Spheres" }
       ],
       shareLinks: [
         {
@@ -210,9 +203,7 @@ export default {
   },
   methods: {
     enter() {
-          window.location.href = "http://www.nashmetaverse.com/play/";
-    },
-    buy() {
+      // window.location.href = "http://www.nashmetaverse.com/play/";
       this.shipNameVisible = true;
     }
   }
