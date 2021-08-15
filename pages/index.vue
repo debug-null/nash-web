@@ -1,15 +1,9 @@
 <template>
   <div class="index-container" ref="homeContainer">
     <Header />
-    <Section @ClickEnter="clickEnter" />
+    <Section @ClickEnter="toggleBuy" />
     <Footer />
     <div class="buy-container"></div>
-
-    <!-- buy now 悬浮按钮 -->
-    <div class="buy-now" @click="toggleBuy">
-      <div>BUY NOW</div>
-      <img src="~static/images/web/icon-buyNow.png" alt="icon-buyNow.png" />
-    </div>
 
     <!-- 弹窗 -->
     <div class="buy-modal" v-if="isShowModal" @click="toggleBuy">
@@ -144,49 +138,6 @@ export default {
   user-select: none;
   font-family: "ali-medium";
   overflow: hidden;
-
-  .buy-now {
-    position: fixed;
-    z-index: 100;
-    bottom: 15%;
-    right: 4.375rem;
-    width: 16.25rem;
-    height: 5.125rem;
-    border-radius: 2.5rem;
-    overflow: hidden;
-    cursor: pointer;
-    div {
-      position: absolute;
-      z-index: 1;
-      width: 16.25rem;
-      height: 5.125rem;
-      line-height: 5.125rem;
-      border-radius: 2.5rem;
-      background: #496dfd;
-      box-shadow: -5px 0px 13px 0px rgba(1, 0, 53, 0.5);
-      right: -300px;
-      font-size: 1.8125rem;
-      font-family: ali-bold;
-      font-weight: bold;
-      color: #ffffff;
-      padding-left: 1.875rem;
-      transition: all 0.5s;
-    }
-    img {
-      position: absolute;
-      z-index: 2;
-      right: -0.4375rem;
-      top: -0.6875rem;
-      width: 6.5rem;
-      height: 6.5rem;
-    }
-    &:hover {
-      div {
-        right: -30px;
-      }
-    }
-  }
-
   .buy-modal {
     position: fixed;
     z-index: 2000;

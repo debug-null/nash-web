@@ -5,21 +5,11 @@
       <h2>CREATE YOUR UNIVERSE</h2>
       <div class="btn-box">
         <div class="btn yellow" @click="enter">
-          ENTER
-        </div>
-        <div class="btn white">
-          GUEST
+          EXPLOR
         </div>
       </div>
     </div>
     <div class="module-two">
-      <h4>WHAT IS NASH METAVERSE ?</h4>
-      <div class="info">
-        The Nash Metaverse is a Cross-Chain Decentralized Metaverse.<br />
-        Choose your own path, explore and create an infinitely evolving space
-        Metaverse. Become a Captain and Experience the Exciting Competition.
-        Earn by Participating in the Game and Contributing to the Ecosystem.
-      </div>
     </div>
     <div class="module-three">
       <div class="public-title">
@@ -227,6 +217,7 @@ section {
     margin-left: 3.125rem;
     margin-top: 14.375rem;
     width: 57.875rem;
+    height: 10.375rem;
     h4 {
       color: #ffd600;
       font-size: 1.875rem;
