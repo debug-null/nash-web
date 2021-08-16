@@ -68,14 +68,19 @@ export default {
       this.isInstallWalletFn();
     }
 
-    var newImg = new Image();
-    newImg.src = this.bgImg;
-    newImg.onerror = ()=>{
+    let windowWidth = window.screen.width;
+    if (windowWidth >= 750) {
+      var newImg = new Image();
+      newImg.src = this.bgImg;
+      newImg.onerror = () => {
+        this.pageLoading = false;
+      };
+      newImg.onload = () => {
+        this.pageLoading = false;
+      };
+    } else {
       this.pageLoading = false;
     }
-    newImg.onload = () => {
-      this.pageLoading = false;
-    };
   },
   methods: {
     clickEnter() {
