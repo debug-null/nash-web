@@ -335,13 +335,13 @@ section {
     }
 
     .nebula-container-box {
-      background: url(/images/web/explore-bg.png) no-repeat 0;
+      background: url("~static/images/mobile/module-three_explore.png") no-repeat 0;
       height: 41.3125rem;
       background-size: contain;
     }
 
     .create-container-box {
-      background: url(/images/web/create-bg.png) no-repeat 0;
+      background: url("~static/images/mobile/module-three_create.png") no-repeat 0;
       height: 28.875rem;
       background-size: contain;
       margin-top: 6%;
@@ -390,7 +390,7 @@ section {
     margin-top: 26.875rem;
     overflow: hidden;
     .public-title {
-      margin-left: 12.8125rem;
+     margin-left: 6.25rem;
     }
 
     .space-container {
