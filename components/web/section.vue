@@ -6,7 +6,7 @@
       <div class="btn-box">
         <div class="btn explor" @click="enter">
           <span></span><span></span><span></span><span></span>
-          EXPLOR
+          EXPLORE
         </div>
       </div>
     </div>
