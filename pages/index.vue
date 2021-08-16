@@ -1,26 +1,32 @@
 <template>
-  <div class="index-container" ref="homeContainer">
-    <Header />
-    <Section @ClickEnter="toggleBuy" />
-    <Footer />
-    <div class="buy-container"></div>
+  <div class="page-container">
+    <template v-if="pageLoading">
+      <Loading />
+    </template>
 
-    <!-- 弹窗 -->
-    <div class="buy-modal" v-if="isShowModal" @click="toggleBuy">
-      <div class="buy-modal-inner" @click.stop>
-        <div class="modal-title">SHIP</div>
-        <div class="modal-content">
-          <div class="name-input">
-            <input type="text" v-model="spaceName" placeholder="Enter NAME" />
-          </div>
-          <div
-            v-loading="nameLoading"
-            element-loading-spinner="el-icon-loading"
-            element-loading-background="rgb(84 71 5)"
-            class="check-btn"
-            @click="handleBuy"
-          >
-            {{ isConnectWallet ? "MINT SHIP" : "install wallet" }}
+    <div class="index-container" ref="homeContainer" v-else>
+      <Header />
+      <Section @ClickEnter="toggleBuy" />
+      <Footer />
+      <div class="buy-container"></div>
+
+      <!-- 弹窗 -->
+      <div class="buy-modal" v-if="isShowModal" @click="toggleBuy">
+        <div class="buy-modal-inner" @click.stop>
+          <div class="modal-title">SHIP</div>
+          <div class="modal-content">
+            <div class="name-input">
+              <input type="text" v-model="spaceName" placeholder="Enter NAME" />
+            </div>
+            <div
+              v-loading="nameLoading"
+              element-loading-spinner="el-icon-loading"
+              element-loading-background="rgb(84 71 5)"
+              class="check-btn"
+              @click="handleBuy"
+            >
+              {{ isConnectWallet ? "MINT SHIP" : "install wallet" }}
+            </div>
           </div>
         </div>
       </div>
@@ -31,6 +37,7 @@
 import Header from "@/components/web/header";
 import Section from "@/components/web/section";
 import Footer from "@/components/web/footer";
+import Loading from "@/components/loading";
 
 export default {
   name: "Index",
@@ -44,13 +51,15 @@ export default {
       ]
     };
   },
-  components: { Header, Section, Footer },
+  components: { Header, Section, Footer, Loading },
   data() {
     return {
       isConnectWallet: false,
       isShowModal: false,
       spaceName: "",
-      nameLoading: false
+      nameLoading: false,
+      pageLoading: true,
+      bgImg: require("@/static/images/web/bg.png")
     };
   },
   computed: {},
@@ -58,10 +67,19 @@ export default {
     if (process.browser) {
       this.isInstallWalletFn();
     }
+
+    var newImg = new Image();
+    newImg.src = this.bgImg;
+    newImg.onerror = ()=>{
+      this.pageLoading = false;
+    }
+    newImg.onload = () => {
+      this.pageLoading = false;
+    };
   },
   methods: {
     clickEnter() {
-         window.location.href = "http://www.nashmetaverse.com/play/";
+      window.location.href = "http://www.nashmetaverse.com/play/";
     },
     // 打开/关闭购买弹框
     toggleBuy() {
