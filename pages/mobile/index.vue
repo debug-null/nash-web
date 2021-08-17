@@ -145,12 +145,12 @@ export default {
       shipNameVisible: false,
       events: [
         { text: "April. 15. 5000 spaceships Launched" },
-        { text: "May. 15. Fisrt Playable – 1" },
-        { text: "Jun. 21. Fisrt Playable – 2" },
+        { text: "May. 15. First Playable – 1" },
+        { text: "Jun. 21. First Playable – 2" },
         { text: "COMING SOON – HyperJump" },
-        { text: "COMING SOON – PlantMaker" },
-        { text: "COMING SOON – Galactic Alliances" },
-        { text: "COMING SOON – Dyson Spheres" }
+        { text: "COMING SOON – PlanetMaker" },
+        { text: "COMING SOON – Galactic Alliance" },
+        { text: "COMING SOON – Dyson Sphere" }
       ],
       shareLinks: [
         {
